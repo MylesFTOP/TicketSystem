@@ -16,6 +16,7 @@ namespace TicketSystemLibrary
         public string TaskLocationPostcode { get; set; }
         public List<PartModel> PartsRequired { get; set; }
         public EngineerModel EngineerAttending { get; set; }
+        public List<TicketModel> LinkedTickets { get; set; }
         public void CreateTask(string title, string description) {
             TaskId = 21; // TODO: Change this to a retrieved ID from a database
             TaskTitle = title;
