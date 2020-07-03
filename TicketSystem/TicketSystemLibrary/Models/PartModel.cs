@@ -9,5 +9,23 @@ namespace TicketSystemLibrary
         public int PartId { get; private set; }
         public string PartTitle { get; set; }
         public string PartDescription { get; set; }
+        public int Quantity { get; set; }
+        public int MinimumStock { get; set; }
+
+        public void AddToStock (int quantityToAdd) {
+            Quantity += quantityToAdd;
+        }
+
+        public void RemoveFromStock (int quantityToRemove) {
+            Quantity -= quantityToRemove;
+            CheckMinimumStock();
+        }
+
+        public void CheckMinimumStock() {
+            if ( Quantity <= MinimumStock )
+            {
+                Console.WriteLine($"Insufficient stock of { PartTitle }. Please order replacement.");
+            }
+        }
     }
 }

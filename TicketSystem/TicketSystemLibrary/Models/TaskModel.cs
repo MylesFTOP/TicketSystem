@@ -41,8 +41,9 @@ namespace TicketSystemLibrary
             TaskStatus = "Completed";
             TaskCompletedDateTime = DateTime.UtcNow;
             TaskUpdatedDateTime = (DateTime)TaskCompletedDateTime;
+            PartsUsed = partsUsed;
             engineer.ScheduledTasks.RemoveAll(x => x.TaskId == currentTask.TaskId);
-            // TODO: Add methods to update PartsUsed and remove respective parts from engineer's stock
+            engineer.RemovePartsFromStock(partsUsed);
         }
     }
 }
