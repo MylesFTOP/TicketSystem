@@ -13,5 +13,15 @@ namespace TicketSystemLibrary
         public DateTime TicketCreatedDateTime { get; private set; }
         public DateTime TicketUpdatedDateTime { get; private set; }
         public DateTime? TicketClosedDateTime { get; private set; }
+        public List<TaskModel> LinkedTasks { get; set; }
+
+        public void CreateTicket(string title, string description) {
+            TicketId = 21; // TODO: Change this to a retrieved ID from a database
+            TicketTitle = title;
+            TicketDescription = description;
+            TicketStatus = "Open";
+            TicketCreatedDateTime = DateTime.UtcNow;
+            TicketUpdatedDateTime = TicketCreatedDateTime;
+        }
     }
 }
