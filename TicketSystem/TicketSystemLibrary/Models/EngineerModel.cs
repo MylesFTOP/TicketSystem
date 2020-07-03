@@ -6,5 +6,9 @@ namespace TicketSystemLibrary
 {
     public class EngineerModel
     {
+        public int EngineerId { get; private set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string HomePostcode { get; set; }
     }
 }

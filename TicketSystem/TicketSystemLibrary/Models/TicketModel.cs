@@ -6,5 +6,12 @@ namespace TicketSystemLibrary
 {
     public class TicketModel
     {
+        public int TicketId { get; private set; }
+        public string TicketTitle { get; set; }
+        public string TicketDescription { get; set; }
+        public string TicketStatus { get; private set; }
+        public DateTime TicketCreatedDateTime { get; private set; }
+        public DateTime TicketUpdatedDateTime { get; private set; }
+        public DateTime? TicketClosedDateTime { get; private set; }
     }
 }
