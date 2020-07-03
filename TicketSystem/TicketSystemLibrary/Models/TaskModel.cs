@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace TicketSystemLibrary
         public DateTime? TaskCompletedDateTime { get; private set; }
         public string TaskLocationPostcode { get; set; }
         public List<PartModel> PartsRequired { get; set; }
+        public List<PartModel> PartsUsed { get; set; }
         public EngineerModel EngineerAttending { get; set; }
         public List<TicketModel> LinkedTickets { get; set; }
         public void CreateTask(string title, string description) {
@@ -30,6 +32,19 @@ namespace TicketSystemLibrary
         public void LinkTicket(TicketModel ticket, TaskModel currentTask) {
             LinkedTickets.Add(ticket);
             ticket.LinkedTasks.Add(currentTask);
+        }
+
+        public void ScheduleTaskToEngineer(EngineerModel engineer, TaskModel currentTask) {
+            EngineerAttending = engineer;
+            engineer.ScheduledTasks.Add(currentTask);
+        }
+
+        public void CompleteTask(EngineerModel engineer, TaskModel currentTask, List<PartModel> partsUsed) {
+            TaskStatus = "Completed";
+            TaskCompletedDateTime = DateTime.UtcNow;
+            TaskUpdatedDateTime = (DateTime)TaskCompletedDateTime;
+            engineer.ScheduledTasks.RemoveAll(x => x.TaskId == currentTask.TaskId);
+            // TODO: Add methods to update PartsUsed and remove respective parts from engineer's stock
         }
     }
 }

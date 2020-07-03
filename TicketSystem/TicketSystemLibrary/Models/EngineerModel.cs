@@ -10,5 +10,7 @@ namespace TicketSystemLibrary
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string HomePostcode { get; set; }
+        public List<PartModel> PartsInStock { get; set; }
+        public List<TaskModel> ScheduledTasks { get; set; }
     }
 }
