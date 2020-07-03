@@ -12,6 +12,7 @@ namespace TicketSystemLibrary
         public string TaskStatus { get; private set; }
         public DateTime TaskCreatedDateTime { get; private set; }
         public DateTime TaskUpdatedDateTime { get; private set; }
+        public DateTime? EngineerExpectedArrivalTime { get; set; }
         public DateTime? TaskCompletedDateTime { get; private set; }
         public string TaskLocationPostcode { get; set; }
         public List<PartModel> PartsRequired { get; set; }
@@ -32,8 +33,9 @@ namespace TicketSystemLibrary
             ticket.LinkedTasks.Add(currentTask);
         }
 
-        public void ScheduleTaskToEngineer(EngineerModel engineer, TaskModel currentTask) {
+        public void ScheduleTaskToEngineer(EngineerModel engineer, TaskModel currentTask, DateTime expectedArrivalTime) {
             EngineerAttending = engineer;
+            EngineerExpectedArrivalTime = expectedArrivalTime;
             engineer.ScheduledTasks.Add(currentTask);
         }
 
