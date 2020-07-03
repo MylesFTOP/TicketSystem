@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TicketSystemLibrary
 {
@@ -24,6 +25,11 @@ namespace TicketSystemLibrary
             TaskStatus = "Open";
             TaskCreatedDateTime = DateTime.UtcNow;
             TaskUpdatedDateTime = TaskCreatedDateTime;
+        }
+
+        public void LinkTicket(TicketModel ticket, TaskModel currentTask) {
+            LinkedTickets.Add(ticket);
+            ticket.LinkedTasks.Add(currentTask);
         }
     }
 }

@@ -23,5 +23,10 @@ namespace TicketSystemLibrary
             TicketCreatedDateTime = DateTime.UtcNow;
             TicketUpdatedDateTime = TicketCreatedDateTime;
         }
+
+        public void LinkTasks(TaskModel task, TicketModel currentTicket) {
+            LinkedTasks.Add(task);
+            task.LinkedTickets.Add(currentTicket);
+        }
     }
 }
