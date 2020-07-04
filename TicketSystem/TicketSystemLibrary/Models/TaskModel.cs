@@ -31,8 +31,16 @@ namespace TicketSystemLibrary
         }
 
         public void LinkTicket(TicketModel ticket, TaskModel currentTask) {
+            // TODO: Catch and escape attempted updates when tasks are already linked
             LinkedTickets.Add(ticket);
             ticket.LinkedTasks.Add(currentTask);
+            ticket.UpdateTicket();
+            UpdateTask();
+        }
+        
+        public void UnlinkTicket(TicketModel ticket, TaskModel currentTask) {
+            LinkedTickets.RemoveAll(x => x.Equals(ticket));
+            ticket.LinkedTasks.RemoveAll(x => x.Equals(currentTask));
             ticket.UpdateTicket();
             UpdateTask();
         }
