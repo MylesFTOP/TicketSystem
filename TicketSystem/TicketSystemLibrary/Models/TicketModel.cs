@@ -33,8 +33,8 @@ namespace TicketSystemLibrary
         }
 
         public void UnlinkTasks(TaskModel task, TicketModel currentTicket) {
-            LinkedTasks.RemoveAll(x => x.Equals(task));
-            task.LinkedTickets.RemoveAll(x => x.Equals(currentTicket));
+            LinkedTasks.RemoveAll(x => x.TaskId == task.TaskId);
+            task.LinkedTickets.RemoveAll(x => x.TicketId == currentTicket.TicketId);
             task.UpdateTask();
             UpdateTicket();
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TicketSystemLibrary
 {
@@ -39,8 +40,8 @@ namespace TicketSystemLibrary
         }
         
         public void UnlinkTicket(TicketModel ticket, TaskModel currentTask) {
-            LinkedTickets.RemoveAll(x => x.Equals(ticket));
-            ticket.LinkedTasks.RemoveAll(x => x.Equals(currentTask));
+            LinkedTickets.RemoveAll(x => x.TicketId == ticket.TicketId);
+            ticket.LinkedTasks.RemoveAll(x => x.TaskId == currentTask.TaskId);
             ticket.UpdateTicket();
             UpdateTask();
         }
