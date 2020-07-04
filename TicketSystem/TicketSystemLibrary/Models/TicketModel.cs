@@ -21,12 +21,18 @@ namespace TicketSystemLibrary
             TicketDescription = description;
             TicketStatus = "Open";
             TicketCreatedDateTime = DateTime.UtcNow;
-            TicketUpdatedDateTime = TicketCreatedDateTime;
+            UpdateTicket();
         }
 
         public void LinkTasks(TaskModel task, TicketModel currentTicket) {
             LinkedTasks.Add(task);
             task.LinkedTickets.Add(currentTicket);
+            task.UpdateTask();
+            UpdateTicket();
+        }
+
+        public void UpdateTicket() {
+            TicketUpdatedDateTime = DateTime.UtcNow;
         }
     }
 }

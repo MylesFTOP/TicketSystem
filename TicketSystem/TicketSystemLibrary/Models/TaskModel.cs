@@ -18,34 +18,43 @@ namespace TicketSystemLibrary
         public List<PartModel> PartsRequired { get; set; }
         public List<PartModel> PartsUsed { get; set; }
         public EngineerModel EngineerAttending { get; set; }
+        public List<ShipmentModel> SentShipments { get; set; }
         public List<TicketModel> LinkedTickets { get; set; }
+
         public void CreateTask(string title, string description) {
             TaskId = 21; // TODO: Change this to a retrieved ID from a database
             TaskTitle = title;
             TaskDescription = description;
             TaskStatus = "Open";
             TaskCreatedDateTime = DateTime.UtcNow;
-            TaskUpdatedDateTime = TaskCreatedDateTime;
+            UpdateTask();
         }
 
         public void LinkTicket(TicketModel ticket, TaskModel currentTask) {
             LinkedTickets.Add(ticket);
             ticket.LinkedTasks.Add(currentTask);
+            ticket.UpdateTicket();
+            UpdateTask();
         }
 
         public void ScheduleTaskToEngineer(EngineerModel engineer, TaskModel currentTask, DateTime expectedArrivalTime) {
             EngineerAttending = engineer;
             EngineerExpectedArrivalTime = expectedArrivalTime;
             engineer.ScheduledTasks.Add(currentTask);
+            UpdateTask();
         }
 
         public void CompleteTask(EngineerModel engineer, TaskModel currentTask, List<PartModel> partsUsed) {
             TaskStatus = "Completed";
             TaskCompletedDateTime = DateTime.UtcNow;
-            TaskUpdatedDateTime = (DateTime)TaskCompletedDateTime;
             PartsUsed = partsUsed;
             engineer.ScheduledTasks.RemoveAll(x => x.TaskId == currentTask.TaskId);
             engineer.RemovePartsFromStock(partsUsed);
+            UpdateTask();
+        }
+
+        public void UpdateTask() {
+            TaskUpdatedDateTime = DateTime.UtcNow;
         }
     }
 }
