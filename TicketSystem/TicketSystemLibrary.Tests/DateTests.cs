@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using TicketSystemLibrary;
+using TicketSystemLibrary.Interfaces;
 
 namespace TicketSystemLibrary.Tests
 {
     public class DateTests
     {
-        private readonly MockShipmentTracker shipmentTracker = new MockShipmentTracker();
+        private readonly IShipmentTracker shipmentTracker = new MockShipmentTracker();
         private readonly ShipmentModel shipment = new ShipmentModel();
 
         [Fact]
