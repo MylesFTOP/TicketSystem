@@ -13,11 +13,12 @@ namespace TicketSystemLibrary
         public List<PartModel> PartsInStock { get; set; }
         public List<TaskModel> ScheduledTasks { get; set; }
 
-        public void AddPartsToStock (List<PartModel> partsSent ) {
+        public void AddPartsToStock(List<PartModel> partsSent) {
             foreach ( PartModel p in partsSent )
             {
                 p.AddToStock(p.Quantity);
             }
+        }
 
         public void RemovePartsFromStock(List<PartModel> partsUsed) {
             foreach ( PartModel p in partsUsed )
