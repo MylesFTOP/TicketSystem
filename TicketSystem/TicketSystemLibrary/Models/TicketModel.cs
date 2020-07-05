@@ -25,18 +25,13 @@ namespace TicketSystemLibrary
         }
 
         public void LinkTasks(TaskModel task, TicketModel currentTicket) {
-            // TODO: Catch and escape attempted updates when tickets are already linked
-            LinkedTasks.Add(task);
-            task.LinkedTickets.Add(currentTicket);
-            task.UpdateTask();
-            UpdateTicket();
+            AssociationHandler handler = new AssociationHandler();
+            handler.LinkTaskAndTicket(task, currentTicket);
         }
 
         public void UnlinkTasks(TaskModel task, TicketModel currentTicket) {
-            LinkedTasks.RemoveAll(x => x.TaskId == task.TaskId);
-            task.LinkedTickets.RemoveAll(x => x.TicketId == currentTicket.TicketId);
-            task.UpdateTask();
-            UpdateTicket();
+            AssociationHandler handler = new AssociationHandler();
+            handler.UnlinkTaskAndTicket(task, currentTicket);
         }
 
         public void UpdateTicket() {
