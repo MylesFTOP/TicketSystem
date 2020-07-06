@@ -16,11 +16,11 @@ namespace TicketSystemLibrary
         public DateTime? EngineerExpectedArrivalTime { get; set; }
         public DateTime? TaskCompletedDateTime { get; private set; }
         public string TaskLocationPostcode { get; set; }
-        public List<PartModel> PartsRequired { get; set; }
-        public List<PartModel> PartsUsed { get; set; }
+        public List<PartModel> PartsRequired { get; set; } = new List<PartModel>();
+        public List<PartModel> PartsUsed { get; set; } = new List<PartModel>();
         public EngineerModel EngineerAttending { get; set; }
-        public List<ShipmentModel> SentShipments { get; set; }
-        public List<TicketModel> LinkedTickets { get; set; }
+        public List<ShipmentModel> SentShipments { get; set; } = new List<ShipmentModel>();
+        public List<TicketModel> LinkedTickets { get; set; } = new List<TicketModel>();
 
         public void CreateTask(string title, string description) {
             TaskId = 21; // TODO: Change this to a retrieved ID from a database
