@@ -27,5 +27,22 @@ namespace TicketSystemLibrary.Tests
             var actual = task.LinkedTickets.Count;
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void Ticket_LinkingShouldIncreaseTaskListLength() {
+            var expected = ticket.LinkedTasks.Count + 1;
+            ticket.LinkTasks(task, ticket);
+            var actual = ticket.LinkedTasks.Count;
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Ticket_UnlinkingShouldDecreaseTaskListLength() {
+            ticket.LinkedTasks.Add(task);
+            var expected = ticket.LinkedTasks.Count - 1;
+            ticket.UnlinkTasks(task, ticket);
+            var actual = ticket.LinkedTasks.Count;
+            Assert.Equal(expected, actual);
+        }
     }
 }
