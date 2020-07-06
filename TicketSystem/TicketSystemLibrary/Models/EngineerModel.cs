@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace TicketSystemLibrary
@@ -10,8 +11,8 @@ namespace TicketSystemLibrary
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string HomePostcode { get; set; }
-        public List<PartModel> PartsInStock { get; set; }
-        public List<TaskModel> ScheduledTasks { get; set; }
+        public List<PartModel> PartsInStock { get; set; } = new List<PartModel>();
+        public List<TaskModel> ScheduledTasks { get; set; } = new List<TaskModel>();
 
         public void AddPartsToStock(List<PartModel> partsSent) {
             foreach ( PartModel p in partsSent )

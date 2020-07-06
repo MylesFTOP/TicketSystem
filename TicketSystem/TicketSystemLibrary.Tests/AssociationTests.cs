@@ -10,6 +10,7 @@ namespace TicketSystemLibrary.Tests
     {
         private readonly TaskModel task = new TaskModel();
         private readonly TicketModel ticket = new TicketModel();
+        private readonly EngineerModel engineer = new EngineerModel();
 
         [Fact]
         public void Task_LinkingShouldIncreaseTicketListLength() {
@@ -42,6 +43,21 @@ namespace TicketSystemLibrary.Tests
             var expected = ticket.LinkedTasks.Count - 1;
             ticket.UnlinkTasks(task, ticket);
             var actual = ticket.LinkedTasks.Count;
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Task_SchedulingTaskToEngineerShouldAddItem() {
+            task.ScheduleTaskToEngineer(engineer, task, DateTime.UtcNow);
+            Assert.IsType<EngineerModel>(task.EngineerAttending);
+        }
+
+
+        [Fact]
+        public void Engineer_SchedulingEngineerToTaskShouldAddItem() {
+            var expected = engineer.ScheduledTasks.Count + 1;
+            task.ScheduleTaskToEngineer(engineer, task, DateTime.UtcNow);
+            var actual = engineer.ScheduledTasks.Count;
             Assert.Equal(expected, actual);
         }
     }

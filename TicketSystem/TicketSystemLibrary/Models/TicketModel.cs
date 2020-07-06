@@ -25,6 +25,7 @@ namespace TicketSystemLibrary
         }
 
         public void LinkTasks(TaskModel task, TicketModel currentTicket) {
+            // TODO: Move handler up to class
             AssociationHandler handler = new AssociationHandler();
             handler.LinkTaskAndTicket(task, currentTicket);
         }
@@ -35,6 +36,7 @@ namespace TicketSystemLibrary
         }
 
         public void UpdateTicket() {
+            // TODO: Create override so method can be passed the timestamp
             TicketUpdatedDateTime = DateTime.UtcNow;
         }
     }
