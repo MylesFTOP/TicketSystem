@@ -8,9 +8,9 @@ namespace TicketSystemLibrary.Tests
 {
     public class AssociationTests
     {
-        private readonly TaskModel task = new TaskModel();
-        private readonly TicketModel ticket = new TicketModel();
-        private readonly EngineerModel engineer = new EngineerModel();
+        private readonly TaskModel task = Factory.CreateTaskModel();
+        private readonly TicketModel ticket = Factory.CreateTicketModel();
+        private readonly EngineerModel engineer = Factory.CreateEngineerModel();
 
         [Fact]
         public void Task_LinkingShouldIncreaseTicketListLength() {

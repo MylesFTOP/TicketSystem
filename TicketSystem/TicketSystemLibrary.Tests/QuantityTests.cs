@@ -7,8 +7,8 @@ namespace TicketSystemLibrary.Tests
 {
     public class QuantityTests
     {
-        private readonly PartModel part = new PartModel();
-        private readonly EngineerModel engineer = new EngineerModel();
+        private readonly PartModel part = Factory.CreatePartModel();
+        private readonly EngineerModel engineer = Factory.CreateEngineerModel();
 
         [Fact]
         public void PartModel_AddToStockShouldIncreaseQuantity() {

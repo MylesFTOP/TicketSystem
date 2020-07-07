@@ -9,10 +9,10 @@ namespace TicketSystemLibrary.Tests
 {
     public class DateTests
     {
-        private readonly IShipmentTracker shipmentTracker = new MockShipmentTracker();
-        private readonly ShipmentModel shipment = new ShipmentModel();
-        private readonly TaskModel task = new TaskModel();
-        private readonly TicketModel ticket = new TicketModel();
+        private readonly IShipmentTracker shipmentTracker = Factory.CreateShipmentTracker();
+        private readonly ShipmentModel shipment = Factory.CreateShipmentModel();
+        private readonly TaskModel task = Factory.CreateTaskModel();
+        private readonly TicketModel ticket = Factory.CreateTicketModel();
 
         [Fact]
         public void ShipmentTracker_ExpectedDeliveryDateShouldReturnADate() {
