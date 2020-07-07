@@ -7,7 +7,7 @@ namespace TicketSystemLibrary
 {
     public class TaskModel
     {
-        readonly AssociationHandler handler = new AssociationHandler();
+        readonly AssociationHandler _handler = Factory.CreateAssociationHandler();
 
         public int TaskId { get; private set; }
         public string TaskTitle { get; set; }
@@ -34,11 +34,11 @@ namespace TicketSystemLibrary
         }
 
         public void LinkTicket(TicketModel ticket) {
-            handler.LinkTaskAndTicket(this, ticket);
+            _handler.LinkTaskAndTicket(this, ticket);
         }
         
         public void UnlinkTicket(TicketModel ticket) {
-            handler.UnlinkTaskAndTicket(this, ticket);
+            _handler.UnlinkTaskAndTicket(this, ticket);
         }
 
         public void ScheduleTaskToEngineer(EngineerModel engineer, DateTime expectedArrivalTime) {

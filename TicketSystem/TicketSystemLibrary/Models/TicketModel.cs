@@ -6,7 +6,7 @@ namespace TicketSystemLibrary
 {
     public class TicketModel
     {
-        readonly AssociationHandler handler = new AssociationHandler();
+        readonly AssociationHandler _handler = Factory.CreateAssociationHandler();
 
         public int TicketId { get; private set; }
         public string TicketTitle { get; set; }
@@ -27,11 +27,11 @@ namespace TicketSystemLibrary
         }
 
         public void LinkTasks(TaskModel task) {
-            handler.LinkTaskAndTicket(task, this);
+            _handler.LinkTaskAndTicket(task, this);
         }
 
         public void UnlinkTasks(TaskModel task) {
-            handler.UnlinkTaskAndTicket(task, this);
+            _handler.UnlinkTaskAndTicket(task, this);
         }
 
         public void UpdateTicket() {
