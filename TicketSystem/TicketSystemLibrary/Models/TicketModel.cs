@@ -6,6 +6,8 @@ namespace TicketSystemLibrary
 {
     public class TicketModel
     {
+        readonly AssociationHandler handler = new AssociationHandler();
+
         public int TicketId { get; private set; }
         public string TicketTitle { get; set; }
         public string TicketDescription { get; set; }
@@ -21,23 +23,23 @@ namespace TicketSystemLibrary
             TicketDescription = description;
             TicketStatus = "Open";
             TicketCreatedDateTime = DateTime.UtcNow;
-            UpdateTicket();
+            UpdateTicket(TicketCreatedDateTime);
         }
 
         public void LinkTasks(TaskModel task, TicketModel currentTicket) {
-            // TODO: Move handler up to class
-            AssociationHandler handler = new AssociationHandler();
             handler.LinkTaskAndTicket(task, currentTicket);
         }
 
         public void UnlinkTasks(TaskModel task, TicketModel currentTicket) {
-            AssociationHandler handler = new AssociationHandler();
             handler.UnlinkTaskAndTicket(task, currentTicket);
         }
 
         public void UpdateTicket() {
-            // TODO: Create override so method can be passed the timestamp
             TicketUpdatedDateTime = DateTime.UtcNow;
+        }
+
+        public void UpdateTicket(DateTime currentTime) {
+            TicketUpdatedDateTime = currentTime;
         }
     }
 }
