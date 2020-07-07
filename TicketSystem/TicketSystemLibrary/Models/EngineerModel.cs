@@ -15,17 +15,14 @@ namespace TicketSystemLibrary
         public List<TaskModel> ScheduledTasks { get; set; } = new List<TaskModel>();
 
         public void AddPartsToStock(List<PartModel> partsSent) {
-            foreach ( var part in partsSent )
-            {
-                PartsInStock.Add(part);
-            }
-            //var partsToAdd = partsSent.Where(x => !PartsInStock.Any(y => y.PartId == x.PartId));
+            var partsToAdd = partsSent.Where(x => !PartsInStock.Any(y => y.PartId == x.PartId));
 
-            //foreach ( var partToAdd in partsToAdd )
-            //{ PartsInStock.Add(partToAdd); }
-            //// TODO: Check equality of partId so that the right parts get updated
-            //foreach ( PartModel p in partsSent )
-            //    { p.AddToStock(p.Quantity); }
+            foreach ( var partToAdd in partsToAdd )
+            { PartsInStock.Add(partToAdd); }
+
+            // TODO: Check equality of partId so that the right parts get updated
+            foreach ( PartModel p in partsSent )
+            { p.AddToStock(p.Quantity); }
         }
 
         public void RemovePartsFromStock(List<PartModel> partsUsed) {
