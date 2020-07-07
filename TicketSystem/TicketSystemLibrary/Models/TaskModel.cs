@@ -7,7 +7,7 @@ namespace TicketSystemLibrary
 {
     public class TaskModel
     {
-        readonly AssociationHandler _handler = Factory.CreateAssociationHandler();
+        readonly AssociationHandler _handler;
 
         public int TaskId { get; private set; }
         public string TaskTitle { get; set; }
@@ -24,6 +24,9 @@ namespace TicketSystemLibrary
         public List<ShipmentModel> SentShipments { get; set; } = new List<ShipmentModel>();
         public List<TicketModel> LinkedTickets { get; set; } = new List<TicketModel>();
 
+        public TaskModel(AssociationHandler handler) {
+            _handler = handler;
+        }
         public void CreateTask(string title, string description) {
             TaskId = 21; // TODO: Change this to a retrieved ID from a database
             TaskTitle = title;

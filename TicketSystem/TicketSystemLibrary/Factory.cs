@@ -28,11 +28,11 @@ namespace TicketSystemLibrary
         }
 
         public static TaskModel CreateTaskModel() {
-            return new TaskModel();
+            return new TaskModel(CreateAssociationHandler());
         }
 
         public static TicketModel CreateTicketModel() {
-            return new TicketModel();
+            return new TicketModel(CreateAssociationHandler());
         }
     }
 }

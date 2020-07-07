@@ -6,7 +6,7 @@ namespace TicketSystemLibrary
 {
     public class TicketModel
     {
-        readonly AssociationHandler _handler = Factory.CreateAssociationHandler();
+        readonly AssociationHandler _handler;
 
         public int TicketId { get; private set; }
         public string TicketTitle { get; set; }
@@ -17,7 +17,11 @@ namespace TicketSystemLibrary
         public DateTime? TicketClosedDateTime { get; private set; }
         public List<TaskModel> LinkedTasks { get; set; } = new List<TaskModel>();
 
-        public void CreateTicket(string title, string description) {
+        public TicketModel(AssociationHandler handler) {
+            _handler = handler;
+        }
+
+        public void OpenNewTicket(string title, string description) {
             TicketId = 21; // TODO: Change this to a retrieved ID from a database
             TicketTitle = title;
             TicketDescription = description;
