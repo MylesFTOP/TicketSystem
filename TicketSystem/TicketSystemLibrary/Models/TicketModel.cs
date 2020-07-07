@@ -26,12 +26,12 @@ namespace TicketSystemLibrary
             UpdateTicket(TicketCreatedDateTime);
         }
 
-        public void LinkTasks(TaskModel task, TicketModel currentTicket) {
-            handler.LinkTaskAndTicket(task, currentTicket);
+        public void LinkTasks(TaskModel task) {
+            handler.LinkTaskAndTicket(task, this);
         }
 
-        public void UnlinkTasks(TaskModel task, TicketModel currentTicket) {
-            handler.UnlinkTaskAndTicket(task, currentTicket);
+        public void UnlinkTasks(TaskModel task) {
+            handler.UnlinkTaskAndTicket(task, this);
         }
 
         public void UpdateTicket() {

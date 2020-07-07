@@ -33,18 +33,18 @@ namespace TicketSystemLibrary
             UpdateTask(TaskCreatedDateTime);
         }
 
-        public void LinkTicket(TaskModel currentTask, TicketModel ticket) {
-            handler.LinkTaskAndTicket(currentTask, ticket);
+        public void LinkTicket(TicketModel ticket) {
+            handler.LinkTaskAndTicket(this, ticket);
         }
         
-        public void UnlinkTicket(TaskModel currentTask, TicketModel ticket) {
-            handler.UnlinkTaskAndTicket(currentTask, ticket);
+        public void UnlinkTicket(TicketModel ticket) {
+            handler.UnlinkTaskAndTicket(this, ticket);
         }
 
-        public void ScheduleTaskToEngineer(EngineerModel engineer, TaskModel currentTask, DateTime expectedArrivalTime) {
+        public void ScheduleTaskToEngineer(EngineerModel engineer, DateTime expectedArrivalTime) {
             EngineerAttending = engineer;
             EngineerExpectedArrivalTime = expectedArrivalTime;
-            engineer.ScheduledTasks.Add(currentTask);
+            engineer.ScheduledTasks.Add(this);
             UpdateTask();
         }
 
