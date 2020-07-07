@@ -30,6 +30,11 @@ namespace TicketSystemLibrary
             {
                 p.RemoveFromStock(p.Quantity);
             }
-        }   
+        }
+
+        public void CompleteTaskForEngineer(TaskModel currentTask) {
+            ScheduledTasks.RemoveAll(x => x.TaskId == currentTask.TaskId);
+            RemovePartsFromStock(currentTask.PartsUsed);
+        }
     }
 }

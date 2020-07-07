@@ -28,7 +28,7 @@ namespace TicketSystemLibrary
             TaskDescription = description;
             TaskStatus = "Open";
             TaskCreatedDateTime = DateTime.UtcNow;
-            UpdateTask();
+            UpdateTask(TaskCreatedDateTime);
         }
 
         public void LinkTicket(TaskModel currentTask, TicketModel ticket) {
@@ -48,17 +48,25 @@ namespace TicketSystemLibrary
             UpdateTask();
         }
 
-        public void CompleteTask(EngineerModel engineer, TaskModel currentTask, List<PartModel> partsUsed) {
-            TaskStatus = "Completed";
-            TaskCompletedDateTime = DateTime.UtcNow;
+        public void UpdatePartsUsed(List<PartModel> partsUsed) {
             PartsUsed = partsUsed;
-            engineer.ScheduledTasks.RemoveAll(x => x.TaskId == currentTask.TaskId);
-            engineer.RemovePartsFromStock(partsUsed);
-            UpdateTask();
+        }
+
+        public void CompleteTask(EngineerModel engineer, List<PartModel> partsUsed) {
+            TaskStatus = "Completed";
+            UpdatePartsUsed(partsUsed);
+            engineer.CompleteTaskForEngineer(this);
+            DateTime currentTime = DateTime.UtcNow;
+            TaskCompletedDateTime = currentTime;
+            UpdateTask(currentTime);
         }
 
         public void UpdateTask() {
             TaskUpdatedDateTime = DateTime.UtcNow;
+        }
+
+        public void UpdateTask(DateTime currentTime) {
+            TaskUpdatedDateTime = currentTime;
         }
     }
 }
