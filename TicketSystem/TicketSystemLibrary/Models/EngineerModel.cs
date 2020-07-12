@@ -15,14 +15,7 @@ namespace TicketSystemLibrary
         public List<TaskModel> ScheduledTasks { get; set; } = Factory.CreateTaskModelList();
 
         public void AddPartsToStock(List<PartModel> partsSent) {
-            var partsToAdd = partsSent.Where(x => !PartsInStock.Any(y => y.PartId == x.PartId));
-
-            foreach ( var partToAdd in partsToAdd )
-            { PartsInStock.Add(partToAdd); }
-
-            // TODO: Check equality of partId so that the right parts get updated
-            foreach ( PartModel p in partsSent )
-            { p.AddToStock(p.Quantity); }
+            PartsInStock.UpdateStockQuantities(partsSent);
         }
 
         public void RemovePartsFromStock(List<PartModel> partsUsed) {

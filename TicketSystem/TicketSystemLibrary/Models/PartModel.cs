@@ -28,5 +28,11 @@ namespace TicketSystemLibrary
                 Console.WriteLine($"Insufficient stock of { PartTitle }. Please order replacement.");
             }
         }
+
+        public bool Equals(PartModel partModel) {
+            if ( this.PartId == partModel.PartId )
+            { return true; }
+            return false;
+        }
     }
 }
