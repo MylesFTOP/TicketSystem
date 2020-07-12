@@ -34,8 +34,8 @@ namespace TicketSystemLibrary.Tests
         [Fact]
         public void EngineerModel_AddPartsToStockShouldIncreaseListLength() {
             var expected = engineer.PartsInStock.Count + 1;
-            List<PartModel> partsToAdd = new List<PartModel>();
-
+            List<PartModel> partsToAdd = Factory.CreatePartModelList();
+            part.Quantity = 1;
             partsToAdd.Add(part);
             engineer.AddPartsToStock(partsToAdd);
             var actual = engineer.PartsInStock.Count;
