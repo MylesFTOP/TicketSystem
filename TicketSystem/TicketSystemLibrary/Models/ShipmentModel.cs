@@ -13,6 +13,6 @@ namespace TicketSystemLibrary
         public DateTime DispatchDate { get; private set; }
         public DateTime? ExpectedDeliveryDate { get; set; }
         public DateTime? ActualDeliveryDate { get; set; }
-        public List<PartModel> PartsInShipment { get; set; }
+        public List<PartModel> PartsInShipment { get; set; } = Factory.CreatePartModelList();
     }
 }

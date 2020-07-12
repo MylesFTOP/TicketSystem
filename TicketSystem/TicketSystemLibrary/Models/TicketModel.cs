@@ -15,7 +15,7 @@ namespace TicketSystemLibrary
         public DateTime TicketCreatedDateTime { get; private set; }
         public DateTime TicketUpdatedDateTime { get; private set; }
         public DateTime? TicketClosedDateTime { get; private set; }
-        public List<TaskModel> LinkedTasks { get; set; } = new List<TaskModel>();
+        public List<TaskModel> LinkedTasks { get; set; } = Factory.CreateTaskModelList();
 
         public TicketModel(AssociationHandler handler) {
             _handler = handler;

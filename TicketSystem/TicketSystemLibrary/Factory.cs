@@ -34,5 +34,21 @@ namespace TicketSystemLibrary
         public static TicketModel CreateTicketModel() {
             return new TicketModel(CreateAssociationHandler());
         }
+
+        public static List<PartModel> CreatePartModelList() {
+            return new List<PartModel>();
+        }
+
+        public static List<ShipmentModel> CreateShipmentModelList() {
+            return new List<ShipmentModel>();
+        }
+
+        public static List<TaskModel> CreateTaskModelList() {
+            return new List<TaskModel>();
+        }
+
+        public static List<TicketModel> CreateTicketModelList() {
+            return new List<TicketModel>();
+        }
     }
 }

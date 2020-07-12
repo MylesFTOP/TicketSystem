@@ -18,11 +18,11 @@ namespace TicketSystemLibrary
         public DateTime? EngineerExpectedArrivalTime { get; set; }
         public DateTime? TaskCompletedDateTime { get; private set; }
         public string TaskLocationPostcode { get; set; }
-        public List<PartModel> PartsRequired { get; set; } = new List<PartModel>();
-        public List<PartModel> PartsUsed { get; set; } = new List<PartModel>();
+        public List<PartModel> PartsRequired { get; set; } = Factory.CreatePartModelList();
+        public List<PartModel> PartsUsed { get; set; } = Factory.CreatePartModelList();
         public EngineerModel EngineerAttending { get; set; }
-        public List<ShipmentModel> SentShipments { get; set; } = new List<ShipmentModel>();
-        public List<TicketModel> LinkedTickets { get; set; } = new List<TicketModel>();
+        public List<ShipmentModel> SentShipments { get; set; } = Factory.CreateShipmentModelList();
+        public List<TicketModel> LinkedTickets { get; set; } = Factory.CreateTicketModelList();
 
         public TaskModel(AssociationHandler handler) {
             _handler = handler;
