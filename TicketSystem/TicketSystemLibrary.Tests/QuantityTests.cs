@@ -44,6 +44,17 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
+        public void EngineerModel_AddPartsToStockShouldIncreaseQuantity() {
+            var expected = part.Quantity;
+            part.Quantity = 1;
+            partsToAdd.Add(part);
+            engineer.AddPartsToStock(partsToAdd);
+            var actual = part.Quantity;
+
+            Assert.NotEqual(expected, actual);
+        }
+
+        [Fact]
         public void EngineerModel_ZeroQuantityPartShouldBeRemovedFromList() {
             var expected = false;
             part.Quantity = 0;

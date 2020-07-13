@@ -19,6 +19,10 @@ namespace TicketSystemLibrary
 
         public void RemoveFromStock (int quantityToRemove) {
             Quantity -= quantityToRemove;
+            if ( Quantity < 0 )
+            {
+                Console.WriteLine($"More items removed than were originally reported present. Please check stock.");
+            }
             CheckMinimumStock();
         }
 

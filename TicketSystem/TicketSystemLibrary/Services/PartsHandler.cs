@@ -12,7 +12,7 @@ namespace TicketSystemLibrary
             {
                 var partToBeUpdated = stockToBeUpdated.FirstOrDefault(x => x.PartId == part.PartId);
                 if ( partToBeUpdated != null )
-                { partToBeUpdated.Quantity += part.Quantity; }
+                { partToBeUpdated.AddToStock(part.Quantity); }
                 else
                 { stockToBeUpdated.Add(part); }
             }
