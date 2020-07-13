@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
+using Xunit.Sdk;
 
 namespace TicketSystemLibrary.Tests
 {
@@ -69,8 +71,23 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
+        public void EngineerModel_RemovePartsFromStockShouldDecreaseQuantity() {
+            part.Quantity = 1;
+            var expected = part.Quantity - 1;
+            engineer.PartsInStock.Add(part);
+
+            part.Quantity = 1;
+            partsToAdd.Add(part);
+            engineer.RemovePartsFromStock(partsToAdd);
+            var actual = engineer.PartsInStock.Where(x => x.PartId == part.PartId).Sum(x => x.Quantity);
+            
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void EngineerModel_ZeroQuantityPartShouldBeRemovedFromList() {
             var expected = false;
+
             part.Quantity = 0;
             partsToAdd.Add(part);
             engineer.AddPartsToStock(partsToAdd);

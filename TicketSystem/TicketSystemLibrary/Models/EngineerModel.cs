@@ -19,10 +19,8 @@ namespace TicketSystemLibrary
         }
 
         public void RemovePartsFromStock(List<PartModel> partsUsed) {
-            foreach ( PartModel p in partsUsed )
-            {
-                p.RemoveFromStock(p.Quantity);
-            }
+            partsUsed.InvertStockQuantities();
+            PartsInStock.UpdateStockQuantities(partsUsed);
         }
 
         public void CompleteTaskForEngineer(TaskModel currentTask) {
