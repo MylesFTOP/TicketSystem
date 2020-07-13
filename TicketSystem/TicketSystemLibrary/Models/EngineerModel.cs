@@ -11,7 +11,7 @@ namespace TicketSystemLibrary
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string HomePostcode { get; set; }
-        public List<PartModel> PartsInStock { get; set; } = Factory.CreatePartModelList();
+        public List<PartModel> PartsInStock { get; private set; } = Factory.CreatePartModelList();
         public List<TaskModel> ScheduledTasks { get; set; } = Factory.CreateTaskModelList();
 
         public void AddPartsToStock(List<PartModel> partsSent) {
