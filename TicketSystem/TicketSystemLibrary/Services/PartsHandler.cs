@@ -16,6 +16,7 @@ namespace TicketSystemLibrary
                 else
                 { stockToBeUpdated.Add(part); }
             }
+            var excessStockRemoved = stockToBeUpdated.Where(x => x.Quantity < 0).ToList();
             stockToBeUpdated.RemoveAll(x => x.Quantity <= 0);
 
             return stockToBeUpdated;
