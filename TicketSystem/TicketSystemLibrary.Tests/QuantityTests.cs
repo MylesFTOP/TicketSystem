@@ -53,5 +53,15 @@ namespace TicketSystemLibrary.Tests
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void PartsHandler_InvertStockQuantitiesShouldReturnOppositeSign() {
+            part.Quantity = 3;
+            var expected = -part.Quantity;
+            partsToAdd.Add(part);
+            partsToAdd.InvertStockQuantities();
+            var actual = part.Quantity;
+            Assert.Equal(expected, actual);
+        }
     }
 }

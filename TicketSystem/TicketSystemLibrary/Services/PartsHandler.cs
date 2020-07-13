@@ -20,5 +20,10 @@ namespace TicketSystemLibrary
 
             return stockToBeUpdated;
         }
+
+        public static List<PartModel> InvertStockQuantities(this List<PartModel> stockToBeUpdated) {
+            stockToBeUpdated.ForEach(x => x.Quantity = -x.Quantity);
+            return stockToBeUpdated;
+        }
     }
 }
