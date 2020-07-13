@@ -9,6 +9,7 @@ namespace TicketSystemLibrary.Tests
     {
         private readonly PartModel part = Factory.CreatePartModel();
         private readonly EngineerModel engineer = Factory.CreateEngineerModel();
+        private readonly List<PartModel> partsToAdd = Factory.CreatePartModelList();
 
         [Fact]
         public void PartModel_AddToStockShouldIncreaseQuantity() {
@@ -34,11 +35,21 @@ namespace TicketSystemLibrary.Tests
         [Fact]
         public void EngineerModel_AddPartsToStockShouldIncreaseListLength() {
             var expected = engineer.PartsInStock.Count + 1;
-            List<PartModel> partsToAdd = Factory.CreatePartModelList();
             part.Quantity = 1;
             partsToAdd.Add(part);
             engineer.AddPartsToStock(partsToAdd);
             var actual = engineer.PartsInStock.Count;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void EngineerModel_ZeroQuantityPartShouldBeRemovedFromList() {
+            var expected = false;
+            part.Quantity = 0;
+            partsToAdd.Add(part);
+            engineer.AddPartsToStock(partsToAdd);
+            var actual = engineer.PartsInStock.Contains(part);
 
             Assert.Equal(expected, actual);
         }
