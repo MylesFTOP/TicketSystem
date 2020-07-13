@@ -105,5 +105,10 @@ namespace TicketSystemLibrary.Tests
             var actual = part.Quantity;
             Assert.Equal(expected, actual);
         }
+
+        [Fact(Skip = "First function to write tomorrow")]
+        public void TaskModel_ScheduleTaskToEngineerShouldProvidePartsThatNeedOrdering() {
+
+        }
     }
 }
