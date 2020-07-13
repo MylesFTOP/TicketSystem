@@ -44,6 +44,20 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
+        public void EngineerModel_AddingDuplicatePartsToStockShouldNotIncreaseListLength() {
+            part.Quantity = 1;
+            partsToAdd.Add(part);
+            engineer.AddPartsToStock(partsToAdd);
+            var expected = engineer.PartsInStock.Count;
+
+            partsToAdd.Add(part);
+            engineer.AddPartsToStock(partsToAdd);
+            var actual = engineer.PartsInStock.Count;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void EngineerModel_AddPartsToStockShouldIncreaseQuantity() {
             var expected = part.Quantity;
             part.Quantity = 1;
