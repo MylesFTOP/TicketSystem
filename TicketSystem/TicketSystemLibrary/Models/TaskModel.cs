@@ -18,11 +18,11 @@ namespace TicketSystemLibrary
         public DateTime? EngineerExpectedArrivalTime { get; set; }
         public DateTime? TaskCompletedDateTime { get; private set; }
         public string TaskLocationPostcode { get; set; }
-        public List<PartModel> PartsRequired { get; set; } = Factory.CreatePartModelList();
-        public List<PartModel> PartsUsed { get; set; } = Factory.CreatePartModelList();
-        public EngineerModel EngineerAttending { get; set; }
+        public List<PartModel> PartsRequired { get; private set; } = Factory.CreatePartModelList();
+        public List<PartModel> PartsUsed { get; private set; } = Factory.CreatePartModelList();
+        public EngineerModel EngineerAttending { get; private set; }
         public List<ShipmentModel> SentShipments { get; set; } = Factory.CreateShipmentModelList();
-        public List<TicketModel> LinkedTickets { get; set; } = Factory.CreateTicketModelList();
+        public List<TicketModel> LinkedTickets { get; private set; } = Factory.CreateTicketModelList();
 
         public TaskModel(AssociationHandler handler) {
             _handler = handler;
@@ -49,6 +49,10 @@ namespace TicketSystemLibrary
             EngineerExpectedArrivalTime = expectedArrivalTime;
             engineer.ScheduledTasks.Add(this);
             UpdateTask();
+        }
+
+        public void UpdatePartsRequired(List<PartModel> partsRequired) {
+            PartsRequired = partsRequired;
         }
 
         public void UpdatePartsUsed(List<PartModel> partsUsed) {
