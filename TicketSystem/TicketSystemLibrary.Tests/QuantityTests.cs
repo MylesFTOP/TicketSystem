@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Sdk;
 
@@ -11,6 +12,7 @@ namespace TicketSystemLibrary.Tests
     {
         private readonly PartModel part = Factory.CreatePartModel();
         private readonly EngineerModel engineer = Factory.CreateEngineerModel();
+        private readonly TaskModel task = Factory.CreateTaskModel();
         private readonly List<PartModel> partsToAdd = Factory.CreatePartModelList();
 
         [Fact]
@@ -101,14 +103,31 @@ namespace TicketSystemLibrary.Tests
             part.Quantity = 3;
             var expected = -part.Quantity;
             partsToAdd.Add(part);
+
             partsToAdd.InvertStockQuantities();
             var actual = part.Quantity;
+
             Assert.Equal(expected, actual);
         }
 
-        [Fact(Skip = "First function to write tomorrow")]
-        public void TaskModel_ScheduleTaskToEngineerShouldProvidePartsThatNeedOrdering() {
+        [Fact]
+        public void EngineerModel_DetermineRequiredPartsShouldReturnListOfPartsFromLinkedTasks() {
+            var expected = 1;
+            partsToAdd.Add(part);
+            task.UpdatePartsRequired(partsToAdd);
 
+            task.ScheduleTaskToEngineer(engineer, DateTime.UtcNow);
+            var actual = engineer.DetermineRequiredPartsForScheduledTasks().Count;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact(Skip = "Next step after determining parts required for scheduled tasks")]
+        public void TaskModel_ScheduleTaskToEngineerShouldProvidePartsThatNeedOrdering() {
+            var expected = 1;
+
+            // var actual = ;
+            // Assert.Equal(expected, actual);
         }
     }
 }

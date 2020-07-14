@@ -23,6 +23,11 @@ namespace TicketSystemLibrary
             PartsInStock.UpdateStockQuantities(partsUsed);
         }
 
+        public List<PartModel> DetermineRequiredPartsForScheduledTasks() {
+            List<PartModel> requiredParts = ScheduledTasks.SelectMany(x => x.PartsRequired).ToList();
+            return requiredParts;
+        }
+
         public void CompleteTaskForEngineer(TaskModel currentTask) {
             ScheduledTasks.RemoveAll(x => x.TaskId == currentTask.TaskId);
             RemovePartsFromStock(currentTask.PartsUsed);
