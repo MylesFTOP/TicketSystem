@@ -123,9 +123,14 @@ namespace TicketSystemLibrary.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Fact(Skip = "Next step after determining parts required for scheduled tasks")]
+        [Fact (Skip = "Test still in development")]
         public void PartsHandler_ConsolidateDuplicateEntriesShouldReduceNumberOfEntries() {
-
+            partsToAdd.Add(part);
+            partsToAdd.Add(duplicatePart);
+            var expected = partsToAdd.Count - 1;
+            //partsToAdd
+            var actual = partsToAdd.Count;
+            Assert.Equal(expected, actual);
         }
 
         [Fact(Skip = "Next step after determining parts required for scheduled tasks")]
