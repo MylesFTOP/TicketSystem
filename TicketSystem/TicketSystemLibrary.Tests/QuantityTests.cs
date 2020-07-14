@@ -11,6 +11,7 @@ namespace TicketSystemLibrary.Tests
     public class QuantityTests
     {
         private readonly PartModel part = Factory.CreatePartModel();
+        private readonly PartModel duplicatePart = Factory.CreatePartModel();
         private readonly EngineerModel engineer = Factory.CreateEngineerModel();
         private readonly TaskModel task = Factory.CreateTaskModel();
         private readonly List<PartModel> partsToAdd = Factory.CreatePartModelList();
@@ -123,6 +124,16 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact(Skip = "Next step after determining parts required for scheduled tasks")]
+        public void PartsHandler_ConsolidateDuplicateEntriesShouldReduceNumberOfEntries() {
+
+        }
+
+        [Fact(Skip = "Next step after determining parts required for scheduled tasks")]
+        public void PartsHandler_ConsolidateDuplicateEntriesShouldIncreaseQuantityAfterConsolidation() {
+
+        }
+
+        [Fact(Skip = "Next step after consolidating duplicates in lists")]
         public void TaskModel_ScheduleTaskToEngineerShouldProvidePartsThatNeedOrdering() {
             var expected = 1;
 
