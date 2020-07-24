@@ -20,3 +20,5 @@ jobs:
       run: dotnet build ./TicketSystem --configuration Release --no-restore
     - name: Test
       run: dotnet test ./TicketSystem --settings "./.github/coverlet.runsettings" /p:CollectCoverage=true
+    - name: Push coverage report to codecov
+      uses: codecov/codecov-action@v1
