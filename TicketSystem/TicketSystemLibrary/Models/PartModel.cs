@@ -53,6 +53,11 @@ namespace TicketSystemLibrary
             return this.PartId == partModel.PartId; 
         }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(PartId);
+        }
+
         public static bool operator ==(PartModel leftHandPart, PartModel rightHandPart)
         {
             if (Object.ReferenceEquals(leftHandPart, null))
@@ -66,5 +71,7 @@ namespace TicketSystemLibrary
 
         public static bool operator !=(PartModel leftHandPart, PartModel rightHandPart)
         { return !(leftHandPart == rightHandPart); }
+
+
     }
 }

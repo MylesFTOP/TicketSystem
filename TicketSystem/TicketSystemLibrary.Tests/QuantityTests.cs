@@ -123,35 +123,6 @@ namespace TicketSystemLibrary.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void PartsModel_UpdateIdShouldChangeId() {
-            var expected = part.PartId + 1;
-            part.UpdatePartId(part.PartId + 1);
-            var actual = part.PartId;
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void PartsModel_EqualsShouldMatchDifferentItemsWithSameId() {
-            var expected = true;
-            var actual = part.Equals(duplicatePart);
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void PartsModel_EqualsOperatorOverrideShouldMatchDifferentItemsWithSameId() {
-            var expected = true;
-            var actual = part == duplicatePart;
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void PartsModel_EqualsOperatorShouldFindEqualityForNullReferences() {
-            var expected = true;
-            var actual = (PartModel)null == (PartModel)null;
-            Assert.Equal(expected, actual);
-        }
-
         [Fact(Skip = "Next step after refactoring PartsModel for equality of IDs")]
         public void PartsHandler_ConsolidateDuplicateEntriesShouldReduceNumberOfEntries() {
             part.Quantity = 1;
