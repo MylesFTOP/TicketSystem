@@ -10,7 +10,7 @@ namespace TicketSystemLibrary
         public static List<PartModel> UpdateStockQuantities(this List<PartModel> stockToBeUpdated, List<PartModel> stockUpdates) {
             foreach ( var part in stockUpdates )
             {
-                var partToBeUpdated = stockToBeUpdated.FirstOrDefault(x => x.PartId == part.PartId);
+                var partToBeUpdated = stockToBeUpdated.FirstOrDefault(x => x == part);
                 if ( partToBeUpdated != null )
                 { partToBeUpdated.AddToStock(part.Quantity); }
                 else

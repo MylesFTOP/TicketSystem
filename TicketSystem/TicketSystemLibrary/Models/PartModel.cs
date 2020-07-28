@@ -13,6 +13,10 @@ namespace TicketSystemLibrary
         public int Quantity { get; set; }
         public int MinimumStock { get; set; }
 
+        public void UpdatePartId(int newId) {
+            PartId = newId;
+        }
+
         public void AddToStock (int quantityToAdd) {
             Quantity += quantityToAdd;
         }
@@ -33,10 +37,34 @@ namespace TicketSystemLibrary
             }
         }
 
-        public bool Equals(PartModel partModel) {
-            if ( this.PartId == partModel.PartId )
-            { return true; }
-            return false;
+        public override bool Equals(object obj)
+        {
+            return this.Equals(obj as PartModel);
         }
+
+        public bool Equals(PartModel partModel)
+        {
+            if (Object.ReferenceEquals(partModel, null))
+                return false;
+            if (Object.ReferenceEquals(this, partModel))
+                return true;
+            if (this.GetType() != partModel.GetType())
+                return false;
+            return this.PartId == partModel.PartId; 
+        }
+
+        public static bool operator ==(PartModel leftHandPart, PartModel rightHandPart)
+        {
+            if (Object.ReferenceEquals(leftHandPart, null))
+            {
+                if (Object.ReferenceEquals(rightHandPart, null))
+                { return true; }
+                return false;
+            }
+            return leftHandPart.Equals(rightHandPart); 
+        }
+
+        public static bool operator !=(PartModel leftHandPart, PartModel rightHandPart)
+        { return !(leftHandPart == rightHandPart); }
     }
 }
