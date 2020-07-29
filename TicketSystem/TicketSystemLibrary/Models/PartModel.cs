@@ -25,7 +25,9 @@ namespace TicketSystemLibrary
             Quantity -= quantityToRemove;
             if ( Quantity < 0 )
             {
-                Console.WriteLine($"More items removed than were originally reported present. Please check stock.");
+                throw new ArgumentOutOfRangeException(
+                    paramName: "quantityToRemove",
+                    message: "More items removed than were originally reported present. Please check stock.");
             }
             CheckMinimumStock();
         }
@@ -37,13 +39,11 @@ namespace TicketSystemLibrary
             }
         }
 
-        public override bool Equals(object obj)
-        {
+        public override bool Equals(object obj) {
             return this.Equals(obj as PartModel);
         }
 
-        public bool Equals(PartModel partModel)
-        {
+        public bool Equals(PartModel partModel) {
             if (Object.ReferenceEquals(partModel, null))
                 return false;
             if (Object.ReferenceEquals(this, partModel))
@@ -53,13 +53,11 @@ namespace TicketSystemLibrary
             return this.PartId == partModel.PartId; 
         }
 
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             return HashCode.Combine(PartId);
         }
 
-        public static bool operator ==(PartModel leftHandPart, PartModel rightHandPart)
-        {
+        public static bool operator ==(PartModel leftHandPart, PartModel rightHandPart) {
             if (Object.ReferenceEquals(leftHandPart, null))
             {
                 if (Object.ReferenceEquals(rightHandPart, null))
@@ -71,7 +69,5 @@ namespace TicketSystemLibrary
 
         public static bool operator !=(PartModel leftHandPart, PartModel rightHandPart)
         { return !(leftHandPart == rightHandPart); }
-
-
     }
 }
