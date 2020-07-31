@@ -22,10 +22,11 @@ namespace TicketSystemLibrary
             return stockToBeUpdated;
         }
 
-        public static List<PartModel> ConsolidateDuplicateEntries(this List<PartModel> partsListToConsolidate) {
+        public static void ConsolidateDuplicateEntries(this List<PartModel> partsListToConsolidate) {
             var consolidatedPartsList = Factory.CreatePartModelList();
             consolidatedPartsList.UpdateStockQuantities(partsListToConsolidate);
-            return consolidatedPartsList;
+            partsListToConsolidate.Clear();
+            partsListToConsolidate.AddRange(consolidatedPartsList);
         }
 
         public static List<PartModel> InvertStockQuantities(this List<PartModel> stockToBeUpdated) {

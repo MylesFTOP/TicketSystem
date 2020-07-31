@@ -12,6 +12,7 @@ namespace TicketSystemLibrary.Tests
     {
         private readonly PartModel part = Factory.CreatePartModel();
         private readonly PartModel duplicatePart = Factory.CreatePartModel();
+        private readonly PartModel distinctPart = Factory.CreatePartModel();
         private readonly EngineerModel engineer = Factory.CreateEngineerModel();
         private readonly TaskModel task = Factory.CreateTaskModel();
         private readonly List<PartModel> partsToAdd = Factory.CreatePartModelList();
@@ -128,7 +129,7 @@ namespace TicketSystemLibrary.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Fact(Skip = "Next step after refactoring PartsModel for equality of IDs")]
+        [Fact]
         public void PartsHandler_ConsolidateDuplicateEntriesShouldReduceNumberOfEntries() {
             part.Quantity = 1;
             partsToAdd.Add(part);
