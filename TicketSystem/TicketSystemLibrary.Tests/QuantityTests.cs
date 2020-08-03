@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +42,33 @@ namespace TicketSystemLibrary.Tests
         [Fact]
         public void PartsModel_RemovingMorePartsThanArePresentShouldThrowException() {
             Assert.Throws<ArgumentOutOfRangeException>(() => part.RemoveFromStock(part.Quantity + 1));
+        }
+
+        [Fact]
+        public void TaskModel_UpdatePartsUsedShouldUpdatePartsUsed() {
+            bool expected = true;
+            partsToAdd.Add(part);
+            task.UpdatePartsUsed(partsToAdd);
+            bool actual = task.PartsUsed.Contains(part);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TaskModel_UpdatePartsRequiredShouldUpdatePartsRequired() {
+            bool expected = true;
+            partsToAdd.Add(part);
+            task.UpdatePartsRequired(partsToAdd);
+            bool actual = task.PartsRequired.Contains(part);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TaskModel_CompleteTaskShouldUpdatePartsUsed() {
+            bool expected = true;
+            partsToAdd.Add(part);
+            task.CompleteTask(engineer, partsToAdd);
+            bool actual = task.PartsUsed.Contains(part);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

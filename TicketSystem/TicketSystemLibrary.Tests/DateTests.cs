@@ -13,6 +13,8 @@ namespace TicketSystemLibrary.Tests
         private readonly ShipmentModel shipment = Factory.CreateShipmentModel();
         private readonly TaskModel task = Factory.CreateTaskModel();
         private readonly TicketModel ticket = Factory.CreateTicketModel();
+        private readonly EngineerModel engineer = Factory.CreateEngineerModel();
+        private readonly List<PartModel> partsUsed = Factory.CreatePartModelList();
 
         [Fact]
         public void ShipmentTracker_ExpectedDeliveryDateShouldReturnADate() {
@@ -21,7 +23,7 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
-        public void UpdateTask_ShouldUpdateTaskUpdatedDateTime() {
+        public void TaskModel_UpdateTaskShouldUpdateTaskUpdatedDateTime() {
             var timeBeforeUpdate = task.TaskUpdatedDateTime;
             task.UpdateTask();
             var timeAfterUpdate = task.TaskUpdatedDateTime;
@@ -29,7 +31,7 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
-        public void UpdateTask_ShouldUsePassedValueWhenOverriden() {
+        public void TaskModel_UpdateTaskShouldUsePassedValueWhenOverriden() {
             var timeUsingParameter = DateTime.UtcNow;
             task.UpdateTask(timeUsingParameter);
             var timeAfterUpdate = task.TaskUpdatedDateTime;
@@ -37,7 +39,7 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
-        public void UpdateTicket_ShouldUpdateTicketUpdatedDateTime() {
+        public void TicketModel_UpdateTicketShouldUpdateTicketUpdatedDateTime() {
             var timeBeforeUpdate = ticket.TicketUpdatedDateTime;
             ticket.UpdateTicket();
             var timeAfterUpdate = ticket.TicketUpdatedDateTime;
@@ -45,11 +47,28 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
-        public void UpdateTicket_ShouldUsePassedValueWhenOverriden() {
+        public void TicketModel_UpdateTicketShouldUsePassedValueWhenOverriden() {
             var timeUsingParameter = DateTime.UtcNow;
             ticket.UpdateTicket(timeUsingParameter);
             var timeAfterUpdate = ticket.TicketUpdatedDateTime;
             Assert.Equal(timeUsingParameter, timeAfterUpdate);
+        }
+        [Fact]
+        public void TaskModel_CreateTaskShouldUpdateDateTimeFields() {
+            var timeBeforeUpdate = task.TaskUpdatedDateTime;
+            task.CreateTask("title", "description");
+            var timeAfterUpdate = task.TaskUpdatedDateTime;
+            Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
+            Assert.Equal(task.TaskCreatedDateTime, task.TaskUpdatedDateTime);
+        }
+
+        [Fact]
+        public void TaskModel_CompleteTaskForEngineerShouldUpdateTask() {
+            var timeBeforeUpdate = task.TaskUpdatedDateTime;
+            task.CompleteTask(engineer, partsUsed);
+            var timeAfterUpdate = task.TaskUpdatedDateTime;
+            Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
+            Assert.Equal(task.TaskUpdatedDateTime, task.TaskCompletedDateTime);
         }
     }
 }
