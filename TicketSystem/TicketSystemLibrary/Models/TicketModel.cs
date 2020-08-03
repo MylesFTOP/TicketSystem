@@ -38,6 +38,13 @@ namespace TicketSystemLibrary
             _handler.UnlinkTaskAndTicket(task, this);
         }
 
+        public void CloseTicket() {
+            TicketStatus = "Closed";
+            DateTime currentTime = DateTime.UtcNow;
+            TicketClosedDateTime = currentTime;
+            UpdateTicket(currentTime);
+        }
+
         public void UpdateTicket() {
             TicketUpdatedDateTime = DateTime.UtcNow;
         }

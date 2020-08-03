@@ -53,8 +53,9 @@ namespace TicketSystemLibrary.Tests
             var timeAfterUpdate = ticket.TicketUpdatedDateTime;
             Assert.Equal(timeUsingParameter, timeAfterUpdate);
         }
+
         [Fact]
-        public void TaskModel_CreateTaskShouldUpdateDateTimeFields() {
+        public void TaskModel_CreateTaskShouldUpdateTaskDateTimeFields() {
             var timeBeforeUpdate = task.TaskUpdatedDateTime;
             task.CreateTask("title", "description");
             var timeAfterUpdate = task.TaskUpdatedDateTime;
@@ -63,12 +64,30 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
-        public void TaskModel_CompleteTaskForEngineerShouldUpdateTask() {
+        public void TicketModel_OpenNewTicketShouldUpdateTicketDateTimeFields() {
+            var timeBeforeUpdate = ticket.TicketUpdatedDateTime;
+            ticket.OpenNewTicket("title", "description");
+            var timeAfterUpdate = ticket.TicketUpdatedDateTime;
+            Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
+            Assert.Equal(ticket.TicketCreatedDateTime, ticket.TicketUpdatedDateTime);
+        }
+
+        [Fact]
+        public void TaskModel_CompleteTaskForEngineerShouldUpdateTaskDateTimeFields() {
             var timeBeforeUpdate = task.TaskUpdatedDateTime;
             task.CompleteTask(engineer, partsUsed);
             var timeAfterUpdate = task.TaskUpdatedDateTime;
             Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
             Assert.Equal(task.TaskUpdatedDateTime, task.TaskCompletedDateTime);
+        }
+
+        [Fact]
+        public void TicketModel_CloseTicketShouldUpdateTicketDateTimeFields() {
+            var timeBeforeUpdate = ticket.TicketUpdatedDateTime;
+            ticket.CloseTicket();
+            var timeAfterUpdate = ticket.TicketUpdatedDateTime;
+            Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
+            Assert.Equal(ticket.TicketUpdatedDateTime, ticket.TicketClosedDateTime);
         }
     }
 }
