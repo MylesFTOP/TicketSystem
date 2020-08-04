@@ -73,9 +73,5 @@ namespace TicketSystemLibrary
         public void UpdateTask() {
             TaskUpdatedDateTime = DateTime.UtcNow;
         }
-
-        public void UpdateTask(DateTime currentTime) {
-            TaskUpdatedDateTime = currentTime;
-        }
     }
 }

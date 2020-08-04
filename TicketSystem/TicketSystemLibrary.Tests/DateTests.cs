@@ -31,27 +31,11 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
-        public void TaskModel_UpdateTaskShouldUsePassedValueWhenOverriden() {
-            var timeUsingParameter = DateTime.UtcNow;
-            task.UpdateTask(timeUsingParameter);
-            var timeAfterUpdate = task.TaskUpdatedDateTime;
-            Assert.Equal(timeUsingParameter, timeAfterUpdate);
-        }
-
-        [Fact]
         public void TicketModel_UpdateTicketShouldUpdateTicketUpdatedDateTime() {
             var timeBeforeUpdate = ticket.TicketUpdatedDateTime;
             ticket.UpdateTicket();
             var timeAfterUpdate = ticket.TicketUpdatedDateTime;
             Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
-        }
-
-        [Fact]
-        public void TicketModel_UpdateTicketShouldUsePassedValueWhenOverriden() {
-            var timeUsingParameter = DateTime.UtcNow;
-            ticket.UpdateTicket(timeUsingParameter);
-            var timeAfterUpdate = ticket.TicketUpdatedDateTime;
-            Assert.Equal(timeUsingParameter, timeAfterUpdate);
         }
 
         [Fact]

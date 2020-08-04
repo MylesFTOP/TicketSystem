@@ -50,9 +50,5 @@ namespace TicketSystemLibrary
         public void UpdateTicket() {
             TicketUpdatedDateTime = DateTime.UtcNow;
         }
-
-        public void UpdateTicket(DateTime currentTime) {
-            TicketUpdatedDateTime = currentTime;
-        }
     }
 }
