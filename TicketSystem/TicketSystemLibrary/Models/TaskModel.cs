@@ -31,9 +31,8 @@ namespace TicketSystemLibrary
             TaskId = 21; // TODO: Change this to a retrieved ID from a database
             TaskTitle = title;
             TaskDescription = description;
-            TaskStatus = "Open";
-            TaskCreatedDateTime = DateTime.UtcNow;
-            UpdateTask(TaskCreatedDateTime);
+            UpdateStatus("Open");
+            TaskCreatedDateTime = TaskUpdatedDateTime;
         }
 
         public void LinkTicket(TicketModel ticket) {
@@ -60,12 +59,15 @@ namespace TicketSystemLibrary
         }
 
         public void CompleteTask(EngineerModel engineer, List<PartModel> partsUsed) {
-            TaskStatus = "Completed";
+            UpdateStatus("Completed");
             UpdatePartsUsed(partsUsed);
             engineer.CompleteTaskForEngineer(this);
-            DateTime currentTime = DateTime.UtcNow;
-            TaskCompletedDateTime = currentTime;
-            UpdateTask(currentTime);
+            TaskCompletedDateTime = TaskUpdatedDateTime;
+        }
+
+        private void UpdateStatus(string newStatus) {
+            TaskStatus = newStatus;
+            UpdateTask();
         }
 
         public void UpdateTask() {

@@ -25,9 +25,8 @@ namespace TicketSystemLibrary
             TicketId = 21; // TODO: Change this to a retrieved ID from a database
             TicketTitle = title;
             TicketDescription = description;
-            TicketStatus = "Open";
-            TicketCreatedDateTime = DateTime.UtcNow;
-            UpdateTicket(TicketCreatedDateTime);
+            UpdateStatus("Open");
+            TicketCreatedDateTime = TicketUpdatedDateTime;
         }
 
         public void LinkTasks(TaskModel task) {
@@ -39,10 +38,13 @@ namespace TicketSystemLibrary
         }
 
         public void CloseTicket() {
-            TicketStatus = "Closed";
-            DateTime currentTime = DateTime.UtcNow;
-            TicketClosedDateTime = currentTime;
-            UpdateTicket(currentTime);
+            UpdateStatus("Closed");
+            TicketClosedDateTime = TicketUpdatedDateTime;
+        }
+
+        private void UpdateStatus(string newStatus) {
+            TicketStatus = newStatus;
+            UpdateTicket();
         }
 
         public void UpdateTicket() {
