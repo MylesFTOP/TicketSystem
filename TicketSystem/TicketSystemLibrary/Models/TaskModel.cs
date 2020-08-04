@@ -47,7 +47,7 @@ namespace TicketSystemLibrary
             EngineerAttending = engineer;
             EngineerExpectedArrivalTime = expectedArrivalTime;
             engineer.ScheduledTasks.Add(this);
-            UpdateTask();
+            UpdateStatus("Scheduled");
         }
 
         public void UpdatePartsRequired(List<PartModel> partsRequired) {

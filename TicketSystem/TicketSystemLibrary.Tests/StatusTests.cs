@@ -44,5 +44,13 @@ namespace TicketSystemLibrary.Tests
             var actual = ticket.TicketStatus;
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void TaskModel_ScheduleTaskToEngineerShouldUpdateTicketStatus() {
+            var expected = "Scheduled";
+            task.ScheduleTaskToEngineer(engineer, DateTime.UtcNow);
+            var actual = task.TaskStatus;
+            Assert.Equal(expected, actual);
+        }
     }
 }
