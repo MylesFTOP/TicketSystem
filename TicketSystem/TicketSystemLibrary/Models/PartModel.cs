@@ -22,13 +22,13 @@ namespace TicketSystemLibrary
         }
 
         public void RemoveFromStock (int quantityToRemove) {
-            Quantity -= quantityToRemove;
-            if ( Quantity < 0 )
+            if ( Quantity < quantityToRemove )
             {
                 throw new ArgumentOutOfRangeException(
                     paramName: "quantityToRemove",
                     message: "More items removed than were originally reported present. Please check stock.");
             }
+            Quantity -= quantityToRemove;
             CheckMinimumStock();
         }
 

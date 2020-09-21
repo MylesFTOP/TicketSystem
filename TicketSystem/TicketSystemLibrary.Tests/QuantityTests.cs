@@ -40,8 +40,23 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
-        public void PartsModel_RemovingMorePartsThanArePresentShouldThrowException() {
+        public void PartsModel_TryingToRemoveMorePartsThanArePresentShouldThrowException() {
             Assert.Throws<ArgumentOutOfRangeException>(() => part.RemoveFromStock(part.Quantity + 1));
+        }
+
+        [Fact]
+        public void PartsModel_TryingToRemoveMorePartsThanArePresentShouldNotChangeQuantity() {
+            var expected = part.Quantity;
+            try
+            {
+                part.RemoveFromStock(part.Quantity + 1);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            var actual = part.Quantity;
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
