@@ -186,9 +186,18 @@ namespace TicketSystemLibrary.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Fact(Skip = "Next step after determining parts required for scheduled tasks")]
+        [Fact]
         public void PartsHandler_ConsolidateDuplicateEntriesShouldIncreaseQuantityAfterConsolidation() {
+            part.Quantity = 1;
+            partsToAdd.Add(part);
+            duplicatePart.Quantity = 1;
+            partsToAdd.Add(duplicatePart);
+            var expected = part.Quantity + duplicatePart.Quantity;
 
+            partsToAdd.ConsolidateDuplicateEntries();
+            var actual = part.Quantity;
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact(Skip = "Next step after consolidating duplicates in lists")]
