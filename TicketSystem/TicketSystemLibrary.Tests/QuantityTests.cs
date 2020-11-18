@@ -200,12 +200,32 @@ namespace TicketSystemLibrary.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Fact(Skip = "Next step after consolidating duplicates in lists")]
-        public void TaskModel_ScheduleTaskToEngineerShouldProvidePartsThatNeedOrdering() {
-            //var expected = 1;
+        [Fact]
+        public void EngineerModel_DetermineAdditionalPartsRequiredShouldAddToLengthOfAdditionalPartsRequired() {
+            part.Quantity = 1;
+            engineer.PartsInStock.Clear();
+            engineer.AdditionalPartsRequired.Clear();
+            partsToAdd.Add(part);
+            task.UpdatePartsRequired(partsToAdd);
+            var expected = engineer.AdditionalPartsRequired.Count + 1;
 
-            // var actual = ;
-            // Assert.Equal(expected, actual);
+            task.ScheduleTaskToEngineer(engineer, DateTime.UtcNow);
+
+            var actual = engineer.AdditionalPartsRequired.Count;
+            Assert.Equal(expected, actual);
+
+        }
+
+        [Fact]
+        public void TaskModel_ScheduleTaskToEngineerShouldProvidePartsThatNeedOrdering() {
+            part.Quantity = 1;
+            engineer.PartsInStock.Clear();
+            partsToAdd.Add(part);
+            task.UpdatePartsRequired(partsToAdd);
+            var expected = part.PartId;
+            task.ScheduleTaskToEngineer(engineer, DateTime.UtcNow);
+            var actual = engineer.AdditionalPartsRequired.FirstOrDefault().PartId;
+            Assert.Equal(expected, actual);
         }
     }
 }

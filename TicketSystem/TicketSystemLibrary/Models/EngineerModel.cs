@@ -12,6 +12,7 @@ namespace TicketSystemLibrary
         public string LastName { get; set; }
         public string HomePostcode { get; set; }
         public List<PartModel> PartsInStock { get; private set; } = Factory.CreatePartModelList();
+        public List<PartModel> AdditionalPartsRequired { get; private set; } = Factory.CreatePartModelList();
         public List<TaskModel> ScheduledTasks { get; set; } = Factory.CreateTaskModelList();
 
         public void AddPartsToStock(List<PartModel> partsSent) {
@@ -26,6 +27,13 @@ namespace TicketSystemLibrary
         public List<PartModel> DetermineRequiredPartsForScheduledTasks() {
             List<PartModel> requiredParts = ScheduledTasks.SelectMany(x => x.PartsRequired).ToList();
             return requiredParts;
+        }
+
+        public void DetermineAdditionalPartsRequired() {
+            var additionalPartsRequired = DetermineRequiredPartsForScheduledTasks();
+            var partsInStock = PartsInStock;
+            partsInStock.InvertStockQuantities();
+            AdditionalPartsRequired = additionalPartsRequired.UpdateStockQuantities(partsInStock);
         }
 
         public void CompleteTaskForEngineer(TaskModel currentTask) {
