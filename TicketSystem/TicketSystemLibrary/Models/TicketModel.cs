@@ -10,7 +10,7 @@ namespace TicketSystemLibrary
 
         public int TicketId { get; private set; }
         public string TicketTitle { get; private set; }
-        public string TicketDescription { get; set; }
+        public string TicketDescription { get; private set; }
         public string TicketStatus { get; private set; }
         public DateTime TicketCreatedDateTime { get; private set; }
         public DateTime TicketUpdatedDateTime { get; private set; }
@@ -49,6 +49,11 @@ namespace TicketSystemLibrary
 
         public void UpdateTitle(string newTitle) {
             TicketTitle = newTitle;
+            UpdateTicket();
+        }
+        
+        public void UpdateDescription(string newDescription) {
+            TicketDescription = newDescription;
             UpdateTicket();
         }
 

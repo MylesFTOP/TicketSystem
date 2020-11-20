@@ -26,5 +26,23 @@ namespace TicketSystemLibrary.Tests
             var updated = ticket.TicketUpdatedDateTime;
             Assert.NotEqual(previous, updated);
         }
+
+        [Fact]
+        public void TicketModel_UpdateDescriptionShouldUpdateTicketDescription()
+        {
+            var previous = ticket.TicketDescription;
+            ticket.UpdateDescription("New description");
+            var updated = ticket.TicketDescription;
+            Assert.NotEqual(previous, updated);
+        }
+
+        [Fact]
+        public void TicketModel_UpdateDescriptionShouldUpdateTicketUpdatedDateTime()
+        {
+            var previous = ticket.TicketUpdatedDateTime;
+            ticket.UpdateDescription("Test text");
+            var updated = ticket.TicketUpdatedDateTime;
+            Assert.NotEqual(previous, updated);
+        }
     }
 }
