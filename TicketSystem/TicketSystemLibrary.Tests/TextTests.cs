@@ -10,7 +10,7 @@ namespace TicketSystemLibrary.Tests
         private readonly TicketModel ticket = Factory.CreateTicketModel();
 
         [Fact]
-        public void TicketModel_ShouldUpdateTicketTitle()
+        public void TicketModel_UpdateTitleShouldUpdateTicketTitle()
         {
             var previous = ticket.TicketTitle;
             ticket.UpdateTitle("New title");
