@@ -9,7 +9,7 @@ namespace TicketSystemLibrary
         readonly AssociationHandler _handler;
 
         public int TicketId { get; private set; }
-        public string TicketTitle { get; set; }
+        public string TicketTitle { get; private set; }
         public string TicketDescription { get; set; }
         public string TicketStatus { get; private set; }
         public DateTime TicketCreatedDateTime { get; private set; }
@@ -44,6 +44,11 @@ namespace TicketSystemLibrary
 
         private void UpdateStatus(string newStatus) {
             TicketStatus = newStatus;
+            UpdateTicket();
+        }
+
+        public void UpdateTitle(string newTitle) {
+            TicketTitle = newTitle;
             UpdateTicket();
         }
 
