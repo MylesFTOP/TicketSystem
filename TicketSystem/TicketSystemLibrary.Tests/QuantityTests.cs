@@ -40,6 +40,14 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
+        public void PartModel_SetMinimumStockShouldUpdateMinimumStock() {
+            var previous = part.MinimumStock;
+            part.SetMinimumStock(part.MinimumStock + 1);
+            var updated = part.MinimumStock;
+            Assert.NotEqual(previous, updated);
+        }
+
+        [Fact]
         public void PartsModel_TryingToRemoveMorePartsThanArePresentShouldThrowException() {
             Assert.Throws<ArgumentOutOfRangeException>(() => part.RemoveFromStock(part.Quantity + 1));
         }

@@ -11,7 +11,7 @@ namespace TicketSystemLibrary
         public string PartTitle { get; private set; }
         public string PartDescription { get; private set; }
         public int Quantity { get; set; }
-        public int MinimumStock { get; set; }
+        public int MinimumStock { get; private set; }
 
         public void UpdatePartId(int newId) {
             PartId = newId;
@@ -23,6 +23,10 @@ namespace TicketSystemLibrary
         
         public void UpdatePartDescription(string newPartDescription) {
             PartDescription = newPartDescription;
+        }
+
+        public void SetMinimumStock(int minimumStock) {
+            MinimumStock = minimumStock;
         }
 
         public void AddToStock (int quantityToAdd) {
