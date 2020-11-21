@@ -9,6 +9,7 @@ namespace TicketSystemLibrary.Tests
     {
         private readonly EngineerModel engineer = Factory.CreateEngineerModel();
         private readonly PartModel part = Factory.CreatePartModel();
+        private readonly ShipmentModel shipment = Factory.CreateShipmentModel();
         private readonly TicketModel ticket = Factory.CreateTicketModel();
 
         [Fact]
@@ -53,6 +54,24 @@ namespace TicketSystemLibrary.Tests
             var previous = part.PartDescription;
             part.UpdatePartDescription("New description");
             var updated = part.PartDescription;
+            Assert.NotEqual(previous, updated);
+        }
+
+        [Fact]
+        public void ShipmentModel_UpdateShipmentExternalIdShouldUpdateShipmentExternalId()
+        {
+            var previous = shipment.ShipmentExternalId;
+            shipment.UpdateShipmentExternalId("X121345");
+            var updated = shipment.ShipmentExternalId;
+            Assert.NotEqual(previous, updated);
+        }
+
+        [Fact]
+        public void ShipmentModel_UpdateShipmentCourierShouldUpdateShipmentCourier()
+        {
+            var previous = shipment.ShipmentCourier;
+            shipment.UpdateShipmentCourier("Courier name");
+            var updated = shipment.ShipmentCourier;
             Assert.NotEqual(previous, updated);
         }
 
