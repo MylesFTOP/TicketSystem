@@ -8,13 +8,21 @@ namespace TicketSystemLibrary
     public class PartModel
     {
         public int PartId { get; private set; }
-        public string PartTitle { get; set; }
-        public string PartDescription { get; set; }
+        public string PartTitle { get; private set; }
+        public string PartDescription { get; private set; }
         public int Quantity { get; set; }
         public int MinimumStock { get; set; }
 
         public void UpdatePartId(int newId) {
             PartId = newId;
+        }
+
+        public void UpdatePartTitle(string newPartTitle) {
+            PartTitle = newPartTitle;
+        }
+        
+        public void UpdatePartDescription(string newPartDescription) {
+            PartDescription = newPartDescription;
         }
 
         public void AddToStock (int quantityToAdd) {

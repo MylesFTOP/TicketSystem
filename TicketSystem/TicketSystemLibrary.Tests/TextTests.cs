@@ -8,6 +8,7 @@ namespace TicketSystemLibrary.Tests
     public class TextTests
     {
         private readonly EngineerModel engineer = Factory.CreateEngineerModel();
+        private readonly PartModel part = Factory.CreatePartModel();
         private readonly TicketModel ticket = Factory.CreateTicketModel();
 
         [Fact]
@@ -34,6 +35,24 @@ namespace TicketSystemLibrary.Tests
             var previous = engineer.HomePostcode;
             engineer.UpdateHomePostcode("NU00 0OO");
             var updated = engineer.HomePostcode;
+            Assert.NotEqual(previous, updated);
+        }
+
+        [Fact]
+        public void PartModel_UpdateTitleShouldUpdatePartTitle()
+        {
+            var previous = part.PartTitle;
+            part.UpdatePartTitle("New title");
+            var updated = part.PartTitle;
+            Assert.NotEqual(previous, updated);
+        }
+
+        [Fact]
+        public void PartModel_UpdateDescriptionShouldUpdatePartDescription()
+        {
+            var previous = part.PartDescription;
+            part.UpdatePartDescription("New description");
+            var updated = part.PartDescription;
             Assert.NotEqual(previous, updated);
         }
 
