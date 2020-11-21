@@ -7,7 +7,35 @@ namespace TicketSystemLibrary.Tests
 {
     public class TextTests
     {
+        private readonly EngineerModel engineer = Factory.CreateEngineerModel();
         private readonly TicketModel ticket = Factory.CreateTicketModel();
+
+        [Fact]
+        public void EngineerModel_UpdateFirstNameShouldUpdateFirstName()
+        {
+            var previous = engineer.FirstName;
+            engineer.UpdateFirstName("New name");
+            var updated = engineer.FirstName;
+            Assert.NotEqual(previous, updated);
+        }
+        
+        [Fact]
+        public void EngineerModel_UpdateLastNameShouldUpdateLastName()
+        {
+            var previous = engineer.LastName;
+            engineer.UpdateLastName("New name");
+            var updated = engineer.LastName;
+            Assert.NotEqual(previous, updated);
+        }
+        
+        [Fact]
+        public void EngineerModel_UpdateHomePostcodeShouldUpdateHomePostcode()
+        {
+            var previous = engineer.HomePostcode;
+            engineer.UpdateHomePostcode("NU00 0OO");
+            var updated = engineer.HomePostcode;
+            Assert.NotEqual(previous, updated);
+        }
 
         [Fact]
         public void TicketModel_UpdateTitleShouldUpdateTicketTitle()
