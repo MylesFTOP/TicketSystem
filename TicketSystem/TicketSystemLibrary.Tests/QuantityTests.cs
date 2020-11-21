@@ -19,6 +19,14 @@ namespace TicketSystemLibrary.Tests
         private readonly List<PartModel> partsToAdd = Factory.CreatePartModelList();
 
         [Fact]
+        public void PartModel_SetMinimumStockShouldUpdateMinimumStock() {
+            var previous = part.MinimumStock;
+            part.SetMinimumStock(part.MinimumStock + 1);
+            var updated = part.MinimumStock;
+            Assert.NotEqual(previous, updated);
+        }
+
+        [Fact]
         public void PartModel_AddToStockShouldIncreaseQuantity() {
             var expected = 3;
 
@@ -37,14 +45,6 @@ namespace TicketSystemLibrary.Tests
             var actual = part.Quantity;
 
             Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void PartModel_SetMinimumStockShouldUpdateMinimumStock() {
-            var previous = part.MinimumStock;
-            part.SetMinimumStock(part.MinimumStock + 1);
-            var updated = part.MinimumStock;
-            Assert.NotEqual(previous, updated);
         }
 
         [Fact]
