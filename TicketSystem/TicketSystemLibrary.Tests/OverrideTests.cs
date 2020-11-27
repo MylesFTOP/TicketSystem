@@ -54,9 +54,16 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
-        public void PartsModelEqualsOperatorShouldNotFindEqualityForOneNullReference() {
+        public void PartsModelEqualsOperatorShouldNotFindEqualityForOneNullReferenceOnRight() {
             var expected = false;
             var actual = part == (PartModel)null;
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void PartsModelEqualsOperatorShouldNotFindEqualityForOneNullReferenceOnLeft() {
+            var expected = false;
+            var actual = (PartModel)null == part;
             Assert.Equal(expected, actual);
         }
 
