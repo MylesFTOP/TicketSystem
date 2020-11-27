@@ -54,6 +54,13 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
+        public void PartsModelEqualsOperatorShouldNotFindEqualityForOneNullReference() {
+            var expected = false;
+            var actual = part == (PartModel)null;
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void PartsModel_GetHashCodeShouldReturnHashCodeOfId() {
             var expected = HashCode.Combine(part.PartId);
             var actual = part.GetHashCode();
