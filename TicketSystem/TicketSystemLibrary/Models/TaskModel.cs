@@ -17,7 +17,7 @@ namespace TicketSystemLibrary
         public DateTime TaskUpdatedDateTime { get; private set; }
         public DateTime? EngineerExpectedArrivalTime { get; set; }
         public DateTime? TaskCompletedDateTime { get; private set; }
-        public string TaskLocationPostcode { get; set; }
+        public string TaskLocationPostcode { get; private set; }
         public List<PartModel> PartsRequired { get; private set; } = Factory.CreatePartModelList();
         public List<PartModel> PartsUsed { get; private set; } = Factory.CreatePartModelList();
         public EngineerModel EngineerAttending { get; private set; }

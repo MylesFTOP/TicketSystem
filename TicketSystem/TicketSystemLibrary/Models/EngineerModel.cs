@@ -13,7 +13,7 @@ namespace TicketSystemLibrary
         public string HomePostcode { get; private set; }
         public List<PartModel> PartsInStock { get; private set; } = Factory.CreatePartModelList();
         public List<PartModel> AdditionalPartsRequired { get; private set; } = Factory.CreatePartModelList();
-        public List<TaskModel> ScheduledTasks { get; set; } = Factory.CreateTaskModelList();
+        public List<TaskModel> ScheduledTasks { get; private set; } = Factory.CreateTaskModelList();
 
         public void UpdateFirstName(string newFirstName) {
             FirstName = newFirstName;
