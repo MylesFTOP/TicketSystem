@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using TicketSystemLibrary;
-using TicketSystemLibrary.Interfaces;
 
 namespace TicketSystemLibrary.Tests
 {
