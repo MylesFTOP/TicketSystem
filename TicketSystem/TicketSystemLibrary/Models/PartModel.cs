@@ -33,6 +33,10 @@ namespace TicketSystemLibrary
             Quantity += quantityToAdd;
         }
 
+        public void InvertQuantity () {
+            Quantity = -Quantity;
+        }
+
         public void RemoveFromStock (int quantityToRemove) {
             if ( Quantity < quantityToRemove )
             {
