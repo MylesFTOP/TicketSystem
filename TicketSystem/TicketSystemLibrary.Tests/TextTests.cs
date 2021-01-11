@@ -76,6 +76,15 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
+        public void ShipmentModel_UpdateShipmentStatusShouldUpdateShipmentStatus() 
+        {
+            var previous = shipment.ShipmentStatus;
+            shipment.UpdateShipmentStatus("Status");
+            var updated = shipment.ShipmentStatus;
+            Assert.NotEqual(previous, updated);
+        }
+
+        [Fact]
         public void TicketModel_UpdateTitleShouldUpdateTicketTitle()
         {
             var previous = ticket.TicketTitle;

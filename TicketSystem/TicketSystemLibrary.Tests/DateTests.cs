@@ -22,6 +22,12 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
+        public void ShipmentModel_DispatchDateShouldReturnADate() {
+            var actual = shipment.DispatchDate;
+            Assert.IsType<DateTime>(actual);
+        }
+
+        [Fact]
         public void TaskModel_UpdateTaskShouldUpdateTaskUpdatedDateTime() {
             var timeBeforeUpdate = task.TaskUpdatedDateTime;
             task.UpdateTask();

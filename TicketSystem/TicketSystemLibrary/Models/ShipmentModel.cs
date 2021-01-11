@@ -23,5 +23,17 @@ namespace TicketSystemLibrary
         public void UpdateShipmentCourier(string shipmentCourier) {
             ShipmentCourier = shipmentCourier;
         }
+
+        public void UpdateShipmentStatus(string newStatus) {
+            ShipmentStatus = newStatus;
+        }
+
+        public void AddPartsToShipment(List<PartModel> partsToAdd) {
+            PartsInShipment.UpdateStockQuantities(partsToAdd);
+        }
+
+        public void RemovePartsFromShipment(List<PartModel> partsToRemove) {
+            AddPartsToShipment(partsToRemove.InvertStockQuantities());
+        }
     }
 }

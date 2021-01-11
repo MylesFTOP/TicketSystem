@@ -17,6 +17,7 @@ namespace TicketSystemLibrary.Tests
         private readonly EngineerModel engineer = Factory.CreateEngineerModel();
         private readonly TaskModel task = Factory.CreateTaskModel();
         private readonly List<PartModel> partsToAdd = Factory.CreatePartModelList();
+        private readonly ShipmentModel shipment = Factory.CreateShipmentModel();
 
         [Fact]
         public void PartModel_SetMinimumStockShouldUpdateMinimumStock() {
@@ -234,6 +235,26 @@ namespace TicketSystemLibrary.Tests
             task.ScheduleTaskToEngineer(engineer, DateTime.UtcNow);
             var actual = engineer.AdditionalPartsRequired.FirstOrDefault().PartId;
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShipmentModel_AddPartsToShipmentShouldAddPartsToShipment() {
+            part.AddToStock(1);
+            partsToAdd.Add(part);
+            var expected = partsToAdd;
+            shipment.AddPartsToShipment(partsToAdd);
+            var actual = shipment.PartsInShipment;
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShipmentModel_RemovePartsFromShipmentShouldRemovePartsFromShipment() {
+            var expected = Factory.CreatePartModelList();
+            partsToAdd.Add(part);
+            shipment.RemovePartsFromShipment(partsToAdd);
+            var actual = shipment.PartsInShipment;
+            Assert.Equal(expected, actual);
+
         }
     }
 }
