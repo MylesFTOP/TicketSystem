@@ -60,12 +60,18 @@ namespace TicketSystemLibrary
         }
 
         public bool Equals(PartModel partModel) {
-            if (Object.ReferenceEquals(partModel, null))
+            if (partModel is null) {
                 return false;
-            if (Object.ReferenceEquals(this, partModel))
+            }
+
+            if (Object.ReferenceEquals(this, partModel)) {
                 return true;
-            if (this.GetType() != partModel.GetType())
+            }
+
+            if (this.GetType() != partModel.GetType()) {
                 return false;
+            }
+
             return this.PartId == partModel.PartId; 
         }
 
@@ -74,9 +80,9 @@ namespace TicketSystemLibrary
         }
 
         public static bool operator ==(PartModel leftHandPart, PartModel rightHandPart) {
-            if (Object.ReferenceEquals(leftHandPart, null))
+            if (leftHandPart is null)
             {
-                if (Object.ReferenceEquals(rightHandPart, null))
+                if (rightHandPart is null)
                 { return true; }
                 return false;
             }
