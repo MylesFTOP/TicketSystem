@@ -9,6 +9,7 @@ namespace TicketSystemLibrary.Tests
     {
         private readonly PartModel part = Factory.CreatePartModel();
         private readonly PartModel duplicatePart = Factory.CreatePartModel();
+        private readonly EngineerModel engineer = Factory.CreateEngineerModel();
 
         [Fact]
         public void PartsModel_UpdateIdShouldChangeId() {
@@ -22,6 +23,13 @@ namespace TicketSystemLibrary.Tests
         [InlineData(false, null)]
         public void PartModel_EqualsReturnsExpectedValues(bool expected, object comparison) {
             var actual = part.Equals(comparison);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void PartModel_EqualsShouldNotMatchDifferentTypes() {
+            var expected = false;
+            var actual = part.Equals(engineer);
             Assert.Equal(expected, actual);
         }
 
