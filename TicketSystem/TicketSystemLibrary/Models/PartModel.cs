@@ -68,10 +68,6 @@ namespace TicketSystemLibrary
                 return true;
             }
 
-            if (this.GetType() != partModel.GetType()) {
-                return false;
-            }
-
             return this.PartId == partModel.PartId; 
         }
 
