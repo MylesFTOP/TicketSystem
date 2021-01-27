@@ -19,10 +19,10 @@ namespace TicketSystemLibrary.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Theory]
-        [InlineData(false, null)]
-        public void PartModel_EqualsReturnsExpectedValues(bool expected, object comparison) {
-            var actual = part.Equals(comparison);
+        [Fact]
+        public void PartModel_EqualsReturnsExpectedValues() {
+            var expected = false;
+            var actual = part.Equals(null);
             Assert.Equal(expected, actual);
         }
 
