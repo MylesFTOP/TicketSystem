@@ -34,6 +34,13 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
+        public void PartModel_EqualsShouldMatchTheSameItemWithItself() {
+            var expected = true;
+            var actual = part.Equals(part);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void PartModel_EqualsShouldMatchDifferentItemsWithSameId() {
             var expected = true;
             var actual = part.Equals(duplicatePart);
