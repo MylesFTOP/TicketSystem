@@ -97,9 +97,11 @@ namespace TicketSystemLibrary.Tests
 
         [Theory]
         [InlineData("2021-01-01", 0)]
+        [InlineData("2021-01-01", 2)]
+        [InlineData("2021-01-01", -3)]
         public void ShipmentModel_DeliveryPerformanceVsExpected(DateTime expectedDeliveryTime, int offset) {
             shipment.UpdateExpectedDeliveryDate(expectedDeliveryTime);
-            var actualDeliveryTime = expectedDeliveryTime.AddDays(offset);
+            var actualDeliveryTime = expectedDeliveryTime.AddDays(-offset);
             shipment.UpdateActualDeliveryDate(actualDeliveryTime);
             var deliveryPerformance = shipment.CalculateDeliveryPerformance();
             Assert.Equal(offset, deliveryPerformance.TotalDays);
