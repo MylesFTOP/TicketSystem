@@ -106,5 +106,10 @@ namespace TicketSystemLibrary.Tests
             var deliveryPerformance = shipment.CalculateDeliveryPerformance();
             Assert.Equal(offset, deliveryPerformance.TotalDays);
         }
+
+        [Fact]
+        public void ShipmentModel_CalculateDeliveryPerformanceShouldThrowExceptionIfNull() {
+            Assert.Throws<ArgumentNullException>(() => shipment.CalculateDeliveryPerformance());
+        }
     }
 }
