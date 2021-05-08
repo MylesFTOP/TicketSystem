@@ -95,14 +95,14 @@ namespace TicketSystemLibrary.Tests
             Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
         }
 
-        [Fact]
-        public void ShipmentModel_DeliveryPerformanceVsExpected() {
-            var expectedDeliveryTime = DateTime.UtcNow;
+        [Theory]
+        [InlineData("2021-01-01", 0)]
+        public void ShipmentModel_DeliveryPerformanceVsExpected(DateTime expectedDeliveryTime, int offset) {
             shipment.UpdateExpectedDeliveryDate(expectedDeliveryTime);
-            var actualDeliveryTime = expectedDeliveryTime;
+            var actualDeliveryTime = expectedDeliveryTime.AddDays(offset);
             shipment.UpdateActualDeliveryDate(actualDeliveryTime);
             var deliveryPerformance = shipment.CalculateDeliveryPerformance();
-            Assert.Equal(0, deliveryPerformance.TotalDays);
+            Assert.Equal(offset, deliveryPerformance.TotalDays);
         }
     }
 }
