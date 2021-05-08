@@ -28,6 +28,14 @@ namespace TicketSystemLibrary
             ShipmentStatus = newStatus;
         }
 
+        public void UpdateExpectedDeliveryDate(DateTime expectedDeliveryDate) {
+            ExpectedDeliveryDate = expectedDeliveryDate;
+        }
+
+        public void UpdateActualDeliveryDate(DateTime actualDeliveryDate) {
+            ActualDeliveryDate = actualDeliveryDate;
+        }
+
         public void AddPartsToShipment(List<PartModel> partsToAdd) {
             PartsInShipment.UpdateStockQuantities(partsToAdd);
         }

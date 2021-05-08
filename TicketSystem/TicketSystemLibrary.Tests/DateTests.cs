@@ -78,5 +78,21 @@ namespace TicketSystemLibrary.Tests
             Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
             Assert.Equal(ticket.TicketUpdatedDateTime, ticket.TicketClosedDateTime);
         }
+
+        [Fact]
+        public void ShipmentModel_UpdateExpectedDeliveryDate() {
+            var timeBeforeUpdate = shipment.ExpectedDeliveryDate;
+            shipment.UpdateExpectedDeliveryDate(DateTime.UtcNow);
+            var timeAfterUpdate = shipment.ExpectedDeliveryDate;
+            Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
+        }
+
+        [Fact]
+        public void ShipmentModel_UpdateActualDeliveryDate() {
+            var timeBeforeUpdate = shipment.ActualDeliveryDate;
+            shipment.UpdateActualDeliveryDate(DateTime.UtcNow);
+            var timeAfterUpdate = shipment.ActualDeliveryDate;
+            Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
+        }
     }
 }
