@@ -80,7 +80,7 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
-        public void ShipmentModel_UpdateExpectedDeliveryDate() {
+        public void ShipmentModel_UpdateExpectedDeliveryDateShouldUpdateExpectedDeliveryDate() {
             var timeBeforeUpdate = shipment.ExpectedDeliveryDate;
             shipment.UpdateExpectedDeliveryDate(DateTime.UtcNow);
             var timeAfterUpdate = shipment.ExpectedDeliveryDate;
@@ -88,7 +88,7 @@ namespace TicketSystemLibrary.Tests
         }
 
         [Fact]
-        public void ShipmentModel_UpdateActualDeliveryDate() {
+        public void ShipmentModel_UpdateActualDeliveryDateShouldUpdateActualDeliveryDate() {
             var timeBeforeUpdate = shipment.ActualDeliveryDate;
             shipment.UpdateActualDeliveryDate(DateTime.UtcNow);
             var timeAfterUpdate = shipment.ActualDeliveryDate;
@@ -99,7 +99,7 @@ namespace TicketSystemLibrary.Tests
         [InlineData("2021-01-01", 0)]
         [InlineData("2021-01-01", 2)]
         [InlineData("2021-01-01", -3)]
-        public void ShipmentModel_DeliveryPerformanceVsExpected(DateTime expectedDeliveryTime, int offset) {
+        public void ShipmentModel_DeliveryPerformanceVsExpectedShouldCalculateTimeSpan(DateTime expectedDeliveryTime, int offset) {
             shipment.UpdateExpectedDeliveryDate(expectedDeliveryTime);
             var actualDeliveryTime = expectedDeliveryTime.AddDays(-offset);
             shipment.UpdateActualDeliveryDate(actualDeliveryTime);
