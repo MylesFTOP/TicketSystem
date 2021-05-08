@@ -94,5 +94,15 @@ namespace TicketSystemLibrary.Tests
             var timeAfterUpdate = shipment.ActualDeliveryDate;
             Assert.NotEqual(timeBeforeUpdate, timeAfterUpdate);
         }
+
+        [Fact]
+        public void ShipmentModel_DeliveryPerformanceVsExpected() {
+            var expectedDeliveryTime = DateTime.UtcNow;
+            shipment.UpdateExpectedDeliveryDate(expectedDeliveryTime);
+            var actualDeliveryTime = expectedDeliveryTime;
+            shipment.UpdateActualDeliveryDate(actualDeliveryTime);
+            var deliveryPerformance = shipment.CalculateDeliveryPerformance();
+            Assert.Equal(0, deliveryPerformance.TotalDays);
+        }
     }
 }

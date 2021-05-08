@@ -43,5 +43,12 @@ namespace TicketSystemLibrary
         public void RemovePartsFromShipment(List<PartModel> partsToRemove) {
             AddPartsToShipment(partsToRemove.InvertStockQuantities());
         }
+
+        public TimeSpan CalculateDeliveryPerformance() {
+            if (ExpectedDeliveryDate is null || ActualDeliveryDate is null) {
+                throw new ArgumentNullException(nameof(CalculateDeliveryPerformance));
+            }
+            return (DateTime)ExpectedDeliveryDate - (DateTime)ActualDeliveryDate;
+        }
     }
 }
