@@ -17,7 +17,7 @@ namespace TicketSystemLibrary.Tests
         public void TaskModel_CreateTaskShouldPopulateTaskStatus() {
             var expected = "Open";
             task.CreateTask("title", "description");
-            var actual = task.TaskStatus;
+            var actual = task.TaskStatus.ToString();
             Assert.Equal(expected, actual);
         }
 
@@ -31,7 +31,7 @@ namespace TicketSystemLibrary.Tests
 
         [Fact]
         public void TaskModel_CompleteTaskShouldUpdateTaskStatus() {
-            var expected = "Completed";
+            var expected = TaskModel.Status.Completed;
             task.CompleteTask(engineer, partsUsed);
             var actual = task.TaskStatus;
             Assert.Equal(expected, actual);
@@ -47,7 +47,7 @@ namespace TicketSystemLibrary.Tests
 
         [Fact]
         public void TaskModel_ScheduleTaskToEngineerShouldUpdateTicketStatus() {
-            var expected = "Scheduled";
+            var expected = TaskModel.Status.Scheduled;
             task.ScheduleTaskToEngineer(engineer, DateTime.UtcNow);
             var actual = task.TaskStatus;
             Assert.Equal(expected, actual);

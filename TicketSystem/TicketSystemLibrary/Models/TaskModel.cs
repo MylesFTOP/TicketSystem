@@ -12,7 +12,7 @@ namespace TicketSystemLibrary
         public int TaskId { get; private set; }
         public string TaskTitle { get; set; }
         public string TaskDescription { get; set; }
-        public string TaskStatus { get; private set; }
+        public Status TaskStatus { get; private set; }
         public DateTime TaskCreatedDateTime { get; private set; }
         public DateTime TaskUpdatedDateTime { get; private set; }
         public DateTime? EngineerExpectedArrivalTime { get; set; }
@@ -31,14 +31,14 @@ namespace TicketSystemLibrary
             TaskId = 21; // TODO: Change this to a retrieved ID from a database
             TaskTitle = title;
             TaskDescription = description;
-            UpdateStatus("Open");
+            UpdateStatus(Status.Open);
             TaskCreatedDateTime = TaskUpdatedDateTime;
         }
 
         public void LinkTicket(TicketModel ticket) {
             _handler.LinkTaskAndTicket(this, ticket);
         }
-        
+
         public void UnlinkTicket(TicketModel ticket) {
             _handler.UnlinkTaskAndTicket(this, ticket);
         }
@@ -48,7 +48,7 @@ namespace TicketSystemLibrary
             EngineerExpectedArrivalTime = expectedArrivalTime;
             engineer.ScheduledTasks.Add(this);
             engineer.DetermineAdditionalPartsRequired();
-            UpdateStatus("Scheduled");
+            UpdateStatus(Status.Scheduled);
         }
 
         public void UpdatePartsRequired(List<PartModel> partsRequired) {
@@ -60,19 +60,31 @@ namespace TicketSystemLibrary
         }
 
         public void CompleteTask(EngineerModel engineer, List<PartModel> partsUsed) {
-            UpdateStatus("Completed");
+            UpdateStatus(Status.Completed);
             UpdatePartsUsed(partsUsed);
             engineer.CompleteTaskForEngineer(this);
             TaskCompletedDateTime = TaskUpdatedDateTime;
         }
 
         private void UpdateStatus(string newStatus) {
+            TaskStatus = Enum.Parse<Status>(newStatus);
+            UpdateTask();
+        }
+
+        private void UpdateStatus(Status newStatus) {
             TaskStatus = newStatus;
             UpdateTask();
         }
 
         public void UpdateTask() {
             TaskUpdatedDateTime = DateTime.UtcNow;
+        }
+
+        public enum Status {
+            Closed,
+            Open,
+            Scheduled,
+            Completed
         }
     }
 }
