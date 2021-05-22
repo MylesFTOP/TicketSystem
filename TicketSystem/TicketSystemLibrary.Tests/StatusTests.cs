@@ -15,9 +15,9 @@ namespace TicketSystemLibrary.Tests
 
         [Fact]
         public void TaskModel_CreateTaskShouldPopulateTaskStatus() {
-            var expected = "Open";
+            var expected = TaskModel.Status.Open;
             task.CreateTask("title", "description");
-            var actual = task.TaskStatus.ToString();
+            var actual = task.TaskStatus;
             Assert.Equal(expected, actual);
         }
 
