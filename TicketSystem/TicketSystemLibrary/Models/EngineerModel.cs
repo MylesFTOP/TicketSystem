@@ -9,13 +9,13 @@ namespace TicketSystemLibrary
     public class EngineerModel : PersonModel
     {
         public int EngineerId { get; private set; }
-        public string HomePostcode { get; private set; }
+        public string BasePostcode { get; private set; }
         public List<PartModel> PartsInStock { get; private set; } = Factory.CreatePartModelList();
         public List<PartModel> AdditionalPartsRequired { get; private set; } = Factory.CreatePartModelList();
         public List<TaskModel> ScheduledTasks { get; private set; } = Factory.CreateTaskModelList();
         
-        public void UpdateHomePostcode(string newHomePostcode) {
-            HomePostcode = newHomePostcode;
+        public void UpdateBasePostcode(string newBasePostcode) {
+            BasePostcode = newBasePostcode;
         }
 
         public void AddPartsToStock(List<PartModel> partsSent) {

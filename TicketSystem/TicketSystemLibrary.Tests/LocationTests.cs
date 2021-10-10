@@ -10,9 +10,9 @@ namespace TicketSystemLibrary.Tests
         private readonly EngineerModel engineer = Factory.CreateEngineerModel();
 
         [Fact]
-        public void EngineerModel_UpdateBasePostcodeShouldChangeBasePostcode()
+        public void EngineerModel_UpdateBasePostcodeShouldSetBasePostcode()
         {
-            var expected = "Test text";
+            var expected = "NU00 0OO";
             engineer.UpdateBasePostcode(expected);
             var actual = engineer.BasePostcode;
             Assert.Equal(expected, actual);

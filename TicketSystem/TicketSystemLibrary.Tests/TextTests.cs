@@ -29,15 +29,6 @@ namespace TicketSystemLibrary.Tests
             var updated = engineer.LastName;
             Assert.NotEqual(previous, updated);
         }
-        
-        [Fact]
-        public void EngineerModel_UpdateHomePostcodeShouldUpdateHomePostcode()
-        {
-            var previous = engineer.HomePostcode;
-            engineer.UpdateHomePostcode("NU00 0OO");
-            var updated = engineer.HomePostcode;
-            Assert.NotEqual(previous, updated);
-        }
 
         [Fact]
         public void PartModel_UpdateTitleShouldUpdatePartTitle()

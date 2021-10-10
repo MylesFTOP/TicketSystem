@@ -9,7 +9,6 @@ namespace TicketSystemLibrary.Models
         public int PersonId { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public string BasePostcode { get; private set; }
 
         public void UpdateFirstName(string newFirstName) {
             FirstName = newFirstName;
@@ -17,10 +16,6 @@ namespace TicketSystemLibrary.Models
 
         public void UpdateLastName(string newLastName) {
             LastName = newLastName;
-        }
-
-        public void UpdateBasePostcode(string newBasePostcode) {
-            BasePostcode = newBasePostcode;
         }
     }
 }
