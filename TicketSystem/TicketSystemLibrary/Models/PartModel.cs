@@ -55,9 +55,7 @@ namespace TicketSystemLibrary
             }
         }
 
-        public override bool Equals(object obj) {
-            return this.Equals(obj as PartModel);
-        }
+        public override bool Equals(object obj) => this.Equals(obj as PartModel);
 
         public bool Equals(PartModel partModel) {
             if (partModel is null) {
@@ -85,7 +83,6 @@ namespace TicketSystemLibrary
             return leftHandPart.Equals(rightHandPart); 
         }
 
-        public static bool operator !=(PartModel leftHandPart, PartModel rightHandPart)
-        { return !(leftHandPart == rightHandPart); }
+        public static bool operator !=(PartModel leftHandPart, PartModel rightHandPart) => !(leftHandPart == rightHandPart);
     }
 }
