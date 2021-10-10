@@ -26,16 +26,13 @@ namespace TicketSystemLibrary
             PartStock.RemovePartsFromStock(partsUsed);
         }
 
-        public List<PartModel> DetermineRequiredPartsForScheduledTasks() {
-            List<PartModel> requiredParts = ScheduledTasks.SelectMany(x => x.PartsRequired).ToList();
-            return requiredParts;
-        }
+        public List<PartModel> DetermineRequiredPartsForScheduledTasks() => 
+            ScheduledTasks.SelectMany(x => x.PartsRequired).ToList();
 
         public void DetermineAdditionalPartsRequired() {
             var additionalPartsRequired = DetermineRequiredPartsForScheduledTasks();
-            var partsInStock = PartStock.PartsInStock;
-            partsInStock.InvertStockQuantities();
-            AdditionalPartsRequired = additionalPartsRequired.UpdateStockQuantities(partsInStock);
+            AdditionalPartsRequired = additionalPartsRequired.UpdateStockQuantities(
+                PartStock.PartsInStock.InvertStockQuantities());
         }
 
         public void CompleteTaskForEngineer(TaskModel currentTask) {
