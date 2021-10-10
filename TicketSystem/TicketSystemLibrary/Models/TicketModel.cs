@@ -29,13 +29,11 @@ namespace TicketSystemLibrary
             TicketCreatedDateTime = TicketUpdatedDateTime;
         }
 
-        public void LinkTasks(TaskModel task) {
+        public void LinkTasks(TaskModel task) => 
             _handler.LinkTaskAndTicket(task, this);
-        }
 
-        public void UnlinkTasks(TaskModel task) {
+        public void UnlinkTasks(TaskModel task) => 
             _handler.UnlinkTaskAndTicket(task, this);
-        }
 
         public void CloseTicket() {
             UpdateStatus("Closed");
@@ -57,8 +55,7 @@ namespace TicketSystemLibrary
             UpdateTicket();
         }
 
-        public void UpdateTicket() {
+        public void UpdateTicket() => 
             TicketUpdatedDateTime = DateTime.UtcNow;
-        }
     }
 }

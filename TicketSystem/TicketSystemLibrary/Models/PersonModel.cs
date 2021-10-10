@@ -10,12 +10,10 @@ namespace TicketSystemLibrary.Models
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
 
-        public void UpdateFirstName(string newFirstName) {
+        public void UpdateFirstName(string newFirstName) => 
             FirstName = newFirstName;
-        }
 
-        public void UpdateLastName(string newLastName) {
+        public void UpdateLastName(string newLastName) => 
             LastName = newLastName;
-        }
     }
 }

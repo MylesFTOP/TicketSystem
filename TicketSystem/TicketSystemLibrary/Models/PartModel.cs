@@ -13,29 +13,23 @@ namespace TicketSystemLibrary
         public int Quantity { get; set; }
         public int MinimumStock { get; private set; }
 
-        public void UpdatePartId(int newId) {
+        public void UpdatePartId(int newId) => 
             PartId = newId;
-        }
 
-        public void UpdatePartTitle(string newPartTitle) {
+        public void UpdatePartTitle(string newPartTitle) => 
             PartTitle = newPartTitle;
-        }
-        
-        public void UpdatePartDescription(string newPartDescription) {
+
+        public void UpdatePartDescription(string newPartDescription) => 
             PartDescription = newPartDescription;
-        }
 
-        public void SetMinimumStock(int minimumStock) {
+        public void SetMinimumStock(int minimumStock) => 
             MinimumStock = minimumStock;
-        }
 
-        public void AddToStock (int quantityToAdd) {
+        public void AddToStock(int quantityToAdd) => 
             Quantity += quantityToAdd;
-        }
 
-        public void InvertQuantity () {
+        public void InvertQuantity() => 
             Quantity = -Quantity;
-        }
 
         public void RemoveFromStock (int quantityToRemove) {
             if ( Quantity < quantityToRemove )
@@ -69,9 +63,7 @@ namespace TicketSystemLibrary
             return this.PartId == partModel.PartId; 
         }
 
-        public override int GetHashCode() {
-            return HashCode.Combine(PartId);
-        }
+        public override int GetHashCode() => HashCode.Combine(PartId);
 
         public static bool operator ==(PartModel leftHandPart, PartModel rightHandPart) {
             if (leftHandPart is null)

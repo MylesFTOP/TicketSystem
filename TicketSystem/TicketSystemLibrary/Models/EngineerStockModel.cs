@@ -19,16 +19,16 @@ namespace TicketSystemLibrary
             PartsInStock.UpdateStockQuantities(partsUsed);
         }
 
+        public void UpdateAdditionalPartsRequired(List<TaskModel> tasks) {
+            var additionalPartsRequired = DetermineRequiredPartsForScheduledTasks(tasks);
+            AdditionalPartsRequired = additionalPartsRequired.UpdateStockQuantities(
+                PartsInStock.InvertStockQuantities());
+        }
+
         public List<PartModel> DetermineRequiredPartsForScheduledTasks(List<TaskModel> tasks) {
             var partsRequired = tasks.SelectMany(x => x.PartsRequired).ToList();
             partsRequired.ConsolidateDuplicateEntries();
             return partsRequired;
-        }
-
-        public void DetermineAdditionalPartsRequired(List<TaskModel> tasks) {
-            var additionalPartsRequired = DetermineRequiredPartsForScheduledTasks(tasks);
-            AdditionalPartsRequired = additionalPartsRequired.UpdateStockQuantities(
-                PartsInStock.InvertStockQuantities());
         }
     }
 }

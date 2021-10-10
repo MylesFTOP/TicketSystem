@@ -35,29 +35,25 @@ namespace TicketSystemLibrary
             TaskCreatedDateTime = TaskUpdatedDateTime;
         }
 
-        public void LinkTicket(TicketModel ticket) {
+        public void LinkTicket(TicketModel ticket) => 
             _handler.LinkTaskAndTicket(this, ticket);
-        }
 
-        public void UnlinkTicket(TicketModel ticket) {
+        public void UnlinkTicket(TicketModel ticket) =>
             _handler.UnlinkTaskAndTicket(this, ticket);
-        }
 
         public void ScheduleTaskToEngineer(EngineerModel engineer, DateTime expectedArrivalTime) {
             EngineerAttending = engineer;
             EngineerExpectedArrivalTime = expectedArrivalTime;
             engineer.ScheduledTasks.Add(this);
-            engineer.DetermineAdditionalPartsRequired();
+            engineer.UpdateAdditionalPartsRequired();
             UpdateStatus(Status.Scheduled);
         }
 
-        public void UpdatePartsRequired(List<PartModel> partsRequired) {
+        public void UpdatePartsRequired(List<PartModel> partsRequired) => 
             PartsRequired = partsRequired;
-        }
 
-        public void UpdatePartsUsed(List<PartModel> partsUsed) {
+        public void UpdatePartsUsed(List<PartModel> partsUsed) => 
             PartsUsed = partsUsed;
-        }
 
         public void CompleteTask(EngineerModel engineer, List<PartModel> partsUsed) {
             UpdateStatus(Status.Completed);
@@ -71,9 +67,8 @@ namespace TicketSystemLibrary
             UpdateTask();
         }
 
-        public void UpdateTask() {
+        public void UpdateTask() => 
             TaskUpdatedDateTime = DateTime.UtcNow;
-        }
 
         public enum Status {
             Closed,

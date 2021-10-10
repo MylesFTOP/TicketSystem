@@ -25,8 +25,8 @@ namespace TicketSystemLibrary
         public List<PartModel> DetermineRequiredPartsForScheduledTasks() =>
             PartStock.DetermineRequiredPartsForScheduledTasks(ScheduledTasks);
 
-        public void DetermineAdditionalPartsRequired() => 
-            PartStock.DetermineAdditionalPartsRequired(ScheduledTasks);
+        public void UpdateAdditionalPartsRequired() => 
+            PartStock.UpdateAdditionalPartsRequired(ScheduledTasks);
 
         public void CompleteTaskForEngineer(TaskModel currentTask) {
             ScheduledTasks.RemoveAll(x => x.TaskId == currentTask.TaskId);
