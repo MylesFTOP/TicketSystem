@@ -97,11 +97,11 @@ namespace TicketSystemLibrary.Tests
 
         [Fact]
         public void EngineerModel_AddPartsToStockShouldIncreaseListLength() {
-            var expected = engineer.PartsInStock.Count + 1;
+            var expected = engineer.PartStock.PartsInStock.Count + 1;
             part.Quantity = 1;
             partsToAdd.Add(part);
             engineer.AddPartsToStock(partsToAdd);
-            var actual = engineer.PartsInStock.Count;
+            var actual = engineer.PartStock.PartsInStock.Count;
 
             Assert.Equal(expected, actual);
         }
@@ -111,11 +111,11 @@ namespace TicketSystemLibrary.Tests
             part.Quantity = 1;
             partsToAdd.Add(part);
             engineer.AddPartsToStock(partsToAdd);
-            var expected = engineer.PartsInStock.Count;
+            var expected = engineer.PartStock.PartsInStock.Count;
 
             partsToAdd.Add(part);
             engineer.AddPartsToStock(partsToAdd);
-            var actual = engineer.PartsInStock.Count;
+            var actual = engineer.PartStock.PartsInStock.Count;
 
             Assert.Equal(expected, actual);
         }
@@ -135,12 +135,12 @@ namespace TicketSystemLibrary.Tests
         public void EngineerModel_RemovePartsFromStockShouldDecreaseQuantity() {
             part.Quantity = 1;
             var expected = part.Quantity - 1;
-            engineer.PartsInStock.Add(part);
+            engineer.PartStock.PartsInStock.Add(part);
 
             part.Quantity = 1;
             partsToAdd.Add(part);
             engineer.RemovePartsFromStock(partsToAdd);
-            var actual = engineer.PartsInStock.Where(x => x.PartId == part.PartId).Sum(x => x.Quantity);
+            var actual = engineer.PartStock.PartsInStock.Where(x => x.PartId == part.PartId).Sum(x => x.Quantity);
             
             Assert.Equal(expected, actual);
         }
@@ -152,7 +152,7 @@ namespace TicketSystemLibrary.Tests
             part.Quantity = 0;
             partsToAdd.Add(part);
             engineer.AddPartsToStock(partsToAdd);
-            var actual = engineer.PartsInStock.Contains(part);
+            var actual = engineer.PartStock.PartsInStock.Contains(part);
 
             Assert.Equal(expected, actual);
         }
@@ -212,7 +212,7 @@ namespace TicketSystemLibrary.Tests
         [Fact]
         public void EngineerModel_DetermineAdditionalPartsRequiredShouldAddToLengthOfAdditionalPartsRequired() {
             part.Quantity = 1;
-            engineer.PartsInStock.Clear();
+            engineer.PartStock.PartsInStock.Clear();
             engineer.AdditionalPartsRequired.Clear();
             partsToAdd.Add(part);
             task.UpdatePartsRequired(partsToAdd);
@@ -228,7 +228,7 @@ namespace TicketSystemLibrary.Tests
         [Fact]
         public void TaskModel_ScheduleTaskToEngineerShouldProvidePartsThatNeedOrdering() {
             part.Quantity = 1;
-            engineer.PartsInStock.Clear();
+            engineer.PartStock.PartsInStock.Clear();
             partsToAdd.Add(part);
             task.UpdatePartsRequired(partsToAdd);
             var expected = part.PartId;
