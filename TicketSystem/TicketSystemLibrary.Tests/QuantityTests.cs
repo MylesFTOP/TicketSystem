@@ -213,14 +213,14 @@ namespace TicketSystemLibrary.Tests
         public void EngineerModel_DetermineAdditionalPartsRequiredShouldAddToLengthOfAdditionalPartsRequired() {
             part.Quantity = 1;
             engineer.PartStock.PartsInStock.Clear();
-            engineer.AdditionalPartsRequired.Clear();
+            engineer.PartStock.AdditionalPartsRequired.Clear();
             partsToAdd.Add(part);
             task.UpdatePartsRequired(partsToAdd);
-            var expected = engineer.AdditionalPartsRequired.Count + 1;
+            var expected = engineer.PartStock.AdditionalPartsRequired.Count + 1;
 
             task.ScheduleTaskToEngineer(engineer, DateTime.UtcNow);
 
-            var actual = engineer.AdditionalPartsRequired.Count;
+            var actual = engineer.PartStock.AdditionalPartsRequired.Count;
             Assert.Equal(expected, actual);
 
         }
@@ -233,7 +233,7 @@ namespace TicketSystemLibrary.Tests
             task.UpdatePartsRequired(partsToAdd);
             var expected = part.PartId;
             task.ScheduleTaskToEngineer(engineer, DateTime.UtcNow);
-            var actual = engineer.AdditionalPartsRequired.FirstOrDefault().PartId;
+            var actual = engineer.PartStock.AdditionalPartsRequired.FirstOrDefault().PartId;
             Assert.Equal(expected, actual);
         }
 

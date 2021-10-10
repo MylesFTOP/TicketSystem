@@ -11,7 +11,6 @@ namespace TicketSystemLibrary
         public int EngineerId { get; private set; }
         public string BasePostcode { get; private set; }
         public EngineerStockModel PartStock { get; private set; } = Factory.CreateEngineerStockModel();
-        public List<PartModel> AdditionalPartsRequired { get; private set; } = Factory.CreatePartModelList();
         public List<TaskModel> ScheduledTasks { get; private set; } = Factory.CreateTaskModelList();
         
         public void UpdateBasePostcode(string newBasePostcode) {
@@ -31,7 +30,7 @@ namespace TicketSystemLibrary
 
         public void DetermineAdditionalPartsRequired() {
             var additionalPartsRequired = DetermineRequiredPartsForScheduledTasks();
-            AdditionalPartsRequired = additionalPartsRequired.UpdateStockQuantities(
+            PartStock.AdditionalPartsRequired = additionalPartsRequired.UpdateStockQuantities(
                 PartStock.PartsInStock.InvertStockQuantities());
         }
 
