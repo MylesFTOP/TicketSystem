@@ -172,6 +172,7 @@ namespace TicketSystemLibrary.Tests
         [Fact]
         public void EngineerModel_DetermineRequiredPartsShouldReturnListOfPartsFromLinkedTasks() {
             var expected = 1;
+            part.Quantity = 1;
             partsToAdd.Add(part);
             task.UpdatePartsRequired(partsToAdd);
 
@@ -206,6 +207,16 @@ namespace TicketSystemLibrary.Tests
             partsToAdd.ConsolidateDuplicateEntries();
             var actual = part.Quantity;
 
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void PartsHandler_ConsolidateDuplicateEntriesShouldKeepUnduplicatedEntries() {
+            var expected = 1;
+            part.Quantity = 1;
+            partsToAdd.Add(part);
+            partsToAdd.ConsolidateDuplicateEntries();
+            var actual = partsToAdd.Count;
             Assert.Equal(expected, actual);
         }
 
