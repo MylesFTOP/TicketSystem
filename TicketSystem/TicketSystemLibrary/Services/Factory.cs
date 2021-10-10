@@ -6,48 +6,28 @@ namespace TicketSystemLibrary
 {
     public static class Factory
     {
-        public static AssociationHandler CreateAssociationHandler() {
-            return new AssociationHandler();
-        }
+        public static AssociationHandler CreateAssociationHandler() => new AssociationHandler();
 
-        public static EngineerModel CreateEngineerModel() {
-            return new EngineerModel();
-        }
+        public static EngineerModel CreateEngineerModel() => new EngineerModel();
 
-        public static PartModel CreatePartModel() {
-            return new PartModel();
-        }
+        public static EngineerStockModel CreateEngineerStockModel() => new EngineerStockModel();
 
-        public static ShipmentModel CreateShipmentModel() {
-            return new ShipmentModel();
-        }
+        public static PartModel CreatePartModel() => new PartModel();
 
-        public static IShipmentTracker CreateShipmentTracker() {
-            return new MockShipmentTracker();
-        }
+        public static ShipmentModel CreateShipmentModel() => new ShipmentModel();
 
-        public static TaskModel CreateTaskModel() {
-            return new TaskModel(CreateAssociationHandler());
-        }
+        public static IShipmentTracker CreateShipmentTracker() => new MockShipmentTracker();
 
-        public static TicketModel CreateTicketModel() {
-            return new TicketModel(CreateAssociationHandler());
-        }
+        public static TaskModel CreateTaskModel() => new TaskModel(CreateAssociationHandler());
 
-        public static List<PartModel> CreatePartModelList() {
-            return new List<PartModel>();
-        }
+        public static TicketModel CreateTicketModel() => new TicketModel(CreateAssociationHandler());
 
-        public static List<ShipmentModel> CreateShipmentModelList() {
-            return new List<ShipmentModel>();
-        }
+        public static List<PartModel> CreatePartModelList() => new List<PartModel>();
 
-        public static List<TaskModel> CreateTaskModelList() {
-            return new List<TaskModel>();
-        }
+        public static List<ShipmentModel> CreateShipmentModelList() => new List<ShipmentModel>();
 
-        public static List<TicketModel> CreateTicketModelList() {
-            return new List<TicketModel>();
-        }
+        public static List<TaskModel> CreateTaskModelList() => new List<TaskModel>();
+
+        public static List<TicketModel> CreateTicketModelList() => new List<TicketModel>();
     }
 }
