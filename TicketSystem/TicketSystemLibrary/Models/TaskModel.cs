@@ -66,11 +66,6 @@ namespace TicketSystemLibrary
             TaskCompletedDateTime = TaskUpdatedDateTime;
         }
 
-        private void UpdateStatus(string newStatus) {
-            TaskStatus = Enum.Parse<Status>(newStatus);
-            UpdateTask();
-        }
-
         private void UpdateStatus(Status newStatus) {
             TaskStatus = newStatus;
             UpdateTask();
