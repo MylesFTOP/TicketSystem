@@ -16,33 +16,26 @@ namespace TicketSystemLibrary
         public List<PartModel> PartsInShipment { get; private set; } = Factory.CreatePartModelList();
 
         // External Id given by courier
-        public void UpdateShipmentExternalId(string shipmentExternalId) {
+        public void UpdateShipmentExternalId(string shipmentExternalId) => 
             ShipmentExternalId = shipmentExternalId;
-        }
 
-        public void UpdateShipmentCourier(string shipmentCourier) {
+        public void UpdateShipmentCourier(string shipmentCourier) => 
             ShipmentCourier = shipmentCourier;
-        }
 
-        public void UpdateShipmentStatus(string newStatus) {
+        public void UpdateShipmentStatus(string newStatus) => 
             ShipmentStatus = newStatus;
-        }
 
-        public void UpdateExpectedDeliveryDate(DateTime expectedDeliveryDate) {
+        public void UpdateExpectedDeliveryDate(DateTime expectedDeliveryDate) => 
             ExpectedDeliveryDate = expectedDeliveryDate;
-        }
 
-        public void UpdateActualDeliveryDate(DateTime actualDeliveryDate) {
+        public void UpdateActualDeliveryDate(DateTime actualDeliveryDate) => 
             ActualDeliveryDate = actualDeliveryDate;
-        }
 
-        public void AddPartsToShipment(List<PartModel> partsToAdd) {
+        public void AddPartsToShipment(List<PartModel> partsToAdd) => 
             PartsInShipment.UpdateStockQuantities(partsToAdd);
-        }
 
-        public void RemovePartsFromShipment(List<PartModel> partsToRemove) {
+        public void RemovePartsFromShipment(List<PartModel> partsToRemove) => 
             AddPartsToShipment(partsToRemove.InvertStockQuantities());
-        }
 
         public TimeSpan CalculateDeliveryPerformance() {
             if (ExpectedDeliveryDate is null || ActualDeliveryDate is null) {
