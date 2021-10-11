@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace TicketSystemLibrary
 {
-    public class EngineerStockModel : StockLocationModel
+    public class EngineerStockModel : StockCollectionModel
     {
         public int OwningEngineerId { get; set; }
         public List<PartModel> AdditionalPartsRequired { get; set; } = Factory.CreatePartModelList();
