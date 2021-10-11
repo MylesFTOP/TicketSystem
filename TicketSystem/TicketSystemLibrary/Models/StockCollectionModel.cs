@@ -2,7 +2,7 @@
 
 namespace TicketSystemLibrary
 {
-    public class StockCollectionModel
+    public abstract class StockCollectionModel
     {
         public List<PartModel> PartsInStock { get; private set; } = Factory.CreatePartModelList();
 
