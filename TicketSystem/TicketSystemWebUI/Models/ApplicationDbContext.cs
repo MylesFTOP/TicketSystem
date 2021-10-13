@@ -13,6 +13,6 @@ namespace TicketSystemWebUI
 
         }
 
-        public DbSet<TaskModel> TaskModels{ get; set; }
+        public DbSet<TaskModel> TaskModels { get; set; }
     }
 }
