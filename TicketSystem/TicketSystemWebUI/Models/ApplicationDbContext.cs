@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TicketSystemLibrary;
+using TicketSystemWebUI.Models;
 
 namespace TicketSystemWebUI
 {
@@ -13,6 +14,6 @@ namespace TicketSystemWebUI
 
         }
 
-        public DbSet<TaskModel> TaskModels { get; set; }
+        public DbSet<TaskModelView> TaskModel { get; set; }
     }
 }
