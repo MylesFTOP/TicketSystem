@@ -65,16 +65,10 @@ namespace TicketSystemLibrary
 
         public override int GetHashCode() => HashCode.Combine(PartId);
 
-        public static bool operator ==(PartModel leftHandPart, PartModel rightHandPart) {
-            if (leftHandPart is null)
-            {
-                if (rightHandPart is null)
-                { return true; }
-                return false;
-            }
-            return leftHandPart.Equals(rightHandPart); 
-        }
+        public static bool operator ==(PartModel leftHandPart, PartModel rightHandPart)
+            => leftHandPart is null ? rightHandPart is null : leftHandPart.Equals(rightHandPart);
 
-        public static bool operator !=(PartModel leftHandPart, PartModel rightHandPart) => !(leftHandPart == rightHandPart);
+        public static bool operator !=(PartModel leftHandPart, PartModel rightHandPart)
+            => !(leftHandPart == rightHandPart);
     }
 }
