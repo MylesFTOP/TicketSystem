@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TicketSystemLibrary
+﻿namespace TicketSystemLibrary
 {
     public class AssociationHandler
     {

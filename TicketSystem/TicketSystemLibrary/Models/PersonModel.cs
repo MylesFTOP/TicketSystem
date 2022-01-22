@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TicketSystemLibrary.Models
+﻿namespace TicketSystemLibrary.Models
 {
     public abstract class PersonModel
     {
