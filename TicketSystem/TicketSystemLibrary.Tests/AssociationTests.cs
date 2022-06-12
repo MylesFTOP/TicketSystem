@@ -20,6 +20,13 @@ namespace TicketSystemLibrary.Tests
             var actual = task.LinkedTickets.Count;
             Assert.Equal(expected, actual);
         }
+        
+        [Fact(Skip = "TaskModel needs equality function first")]
+        public void TaskModel_LinkingDuplicatesShouldNotIncreaseTicketListLength() {
+            var expected = task.LinkedTickets.Count;
+            var actual = task.LinkedTickets.Count;
+            Assert.Equal(expected, actual);
+        }
 
         [Fact]
         public void TaskModel_UnlinkingShouldDecreaseTicketListLength() {
