@@ -2,7 +2,7 @@
 
 namespace TicketSystemLibrary
 {
-    public class PartModel : EntityModel
+    public class PartModel
     {
         public int PartId { get; private set; }
         public string PartTitle { get; private set; }
@@ -44,5 +44,27 @@ namespace TicketSystemLibrary
                 Console.WriteLine($"Insufficient stock of { PartTitle }. Please order replacement.");
             }
         }
+
+        public override bool Equals(object obj)
+            => this.Equals(obj as PartModel);
+
+        public bool Equals(PartModel partModel) {
+            if (partModel is null)
+                return false;
+
+            if (Object.ReferenceEquals(this, partModel))
+                return true;
+
+            return this.PartId == partModel.PartId; 
+        }
+
+        public override int GetHashCode()
+            => HashCode.Combine(PartId);
+
+        public static bool operator ==(PartModel leftHandPart, PartModel rightHandPart)
+            => leftHandPart is null ? rightHandPart is null : leftHandPart.Equals(rightHandPart);
+
+        public static bool operator !=(PartModel leftHandPart, PartModel rightHandPart)
+            => !(leftHandPart == rightHandPart);
     }
 }
